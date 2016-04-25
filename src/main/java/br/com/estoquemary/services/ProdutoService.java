@@ -24,10 +24,8 @@ public class ProdutoService {
 		if(produto3 != null)
 			return produtoRepository.save(produto);
 		else{
-			EstoqueProdutos estoque = new EstoqueProdutos();
-			estoque.setProduto(produto);
+			EstoqueProdutos estoque = new EstoqueProdutos(produto);
 			estoque = estoqueProdutoRepository.save(estoque);
-//			produto.setEstoque(estoque);
 			
 			Produto produto2 = produtoRepository.save(produto);
 				

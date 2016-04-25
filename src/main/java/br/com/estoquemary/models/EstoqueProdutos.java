@@ -30,9 +30,9 @@ public class EstoqueProdutos {
 		this.setQntd_comprada(0);
 		this.setQntd_estoque(0);
 		this.setQntd_vendida(0);
-		this.setValor_medio(0.0);
-		this.setValor_total(0.0);
-		this.setValor_vendido(0.0);
+		this.valor_medio = 0.0;
+		this.valor_total = 0.0;
+		this.valor_vendido = 0.0;
 	}
 	
 	public Long getId() {

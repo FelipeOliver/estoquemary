@@ -23,7 +23,7 @@ public class ProdutosPedidoController {
 	public ResponseEntity<String> addList(List<ProdutosPedido> list){
 		try{
 			List<ProdutosPedido> p = produtosPedidoService.addListProdutoPedidos(list);
-			return new ResponseEntity<String>("Lista de Produtos por pedido Salva com Sucesso", HttpStatus.CREATED);
+			return new ResponseEntity<String>("Lista com "+ p.size() +"produtos no pedido"+ p.get(0).getPedido() +"Salva com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}

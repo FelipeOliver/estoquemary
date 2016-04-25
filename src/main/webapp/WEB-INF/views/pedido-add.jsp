@@ -92,8 +92,9 @@
 								<th><i class="glyphicon glyphicon-tasks"></i></th>
 								<th>Código Produto</th>
 								<th>Descrição do Produto</th>
-								<th>Pontuação</th>
+<!-- 								<th>Pontuação</th> -->
 								<th>Quantidade</th>
+								<th>Vlr. Pago</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,8 +102,9 @@
 								<td><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
 								<td>{{ produto.cod_produto }}</td>
 								<td>{{ produto.descricao }}</td>
-								<td>{{ produto.pontuacao }}</td>
-								<td><input ng-model="produto.quantidade" value="0" class="form-control"></td>
+<!-- 								<td>{{ produto.pontuacao }}</td> -->
+								<td><input ng-model="produto.qntd_produtos" value="0" class="form-control" ng-numero></td>
+								<td><input ng-model="produto.valor_pago" value="0.0" class="form-control" ng-dinheiro></td>
 							</tr>	
 						</tbody>
 					</table>

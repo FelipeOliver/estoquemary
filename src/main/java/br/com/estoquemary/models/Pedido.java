@@ -1,19 +1,15 @@
 package br.com.estoquemary.models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Pedido {
 	@Id
 	private Long cod_pedido;
-	@ManyToMany
-	@JoinColumn(name = "cod_produto")
-	private List<Produto> produto;
+//	@ManyToMany
+//	@JoinColumn(name = "cod_produto")
+//	private List<Produto> produto;
 	private String dt_entrega;
 	private String dt_solicitacao;
 	private Double valor_pago;
@@ -28,12 +24,12 @@ public class Pedido {
 		return dt_entrega;
 	}
 	
-	public List<Produto> getProduto() {
-		return produto;
-	}
-	public void setProduto(List<Produto> produto) {
-		this.produto = produto;
-	}
+//	public List<Produto> getProduto() {
+//		return produto;
+//	}
+//	public void setProduto(List<Produto> produto) {
+//		this.produto = produto;
+//	}
 	public void setDt_entrega(String dt_entrega) {
 		this.dt_entrega = dt_entrega;
 	}
@@ -80,7 +76,7 @@ public class Pedido {
 	}
 	@Override
 	public String toString() {
-		return "Pedido [cod_pedido=" + cod_pedido + ", produto=" + produto + ", dt_entrega=" + dt_entrega
+		return "Pedido [cod_pedido=" + cod_pedido + ", dt_entrega=" + dt_entrega
 				+ ", dt_solicitacao=" + dt_solicitacao + ", valor_pago=" + valor_pago + ", valor_imposto="
 				+ valor_imposto + "]";
 	}

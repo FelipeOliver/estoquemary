@@ -32,20 +32,9 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 	};
 	
 	self.addList = function(){
-//		var json = JSON.stringify( self.produtosAdicionados, function( key, value ) {
-//		    if( key === "$$hashKey" ) {
-//		        return undefined;
-//		    }
-//		    return value;
-//		});
 		self.pedido.produto = self.produtosAdicionados;
 		console.log(angular.toJson(self.pedido));
 		$.get("/estoquemary/pedido/addPedido?teste=" + angular.toJson(self.pedido))
-//		$.ajax({url: "/estoquemary/pedido/addPedido",
-//	          type: 'POST',
-//	          data: angular.toJson(self.pedido),
-//	   contentType: 'application/json; charset=utf-8',
-//	      dataType: 'json'})
 		.success(function(data){
 			alert(data);
 			
