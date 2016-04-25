@@ -25,5 +25,6 @@
 	<script type="text/javascript" src="/estoquemary/resources/core/js/ProdutoService.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/produtoController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/pedidoController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/estoqueController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/directives/dinheiroMask.js"></script>
 </html>

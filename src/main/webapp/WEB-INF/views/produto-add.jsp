@@ -29,7 +29,7 @@
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
 							<!-- ng-pattern="^[0-9]*\.[0-9]*$"  -->
-							<input class="form-control input-sm numero" type="text"  ng-model="ctrl.produto.valor_venda" 
+							<input class="form-control input-sm" type="text"  ng-model="ctrl.produto.valor_venda" 
 							ng-dinheiro required>
 							<!-- ng-keyup="dinheiro()" -->
 						</div>

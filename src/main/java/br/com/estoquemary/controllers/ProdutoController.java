@@ -23,6 +23,7 @@ public class ProdutoController {
 	public ResponseEntity<String> addPProduto(Produto produto){
 		System.out.println("Passou aqui");
 		try{
+			produto.setValor_venda(produto.getValor_venda() * 10);
 			Produto p = produtoService.addProduto(produto);
 			return new ResponseEntity<String>("Produto: "+ p.getCod_produto() + " Salvo com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
