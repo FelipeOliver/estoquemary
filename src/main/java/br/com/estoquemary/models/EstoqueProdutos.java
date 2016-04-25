@@ -114,7 +114,7 @@ public class EstoqueProdutos {
 	}
 	@Override
 	public String toString() {
-		return "EstoqueProdutos [id_estoque=" + id_estoque + ", qntd_estoque=" + qntd_estoque
+		return "EstoqueProdutos [id_estoque=" + id_estoque + ", qntd_estoque=" + qntd_estoque + ", produto=" + produto
 				+ ", valor_medio=" + valor_medio + ", qntd_comprada=" + qntd_comprada + ", valor_total=" + valor_total
 				+ ", qntd_vendida=" + qntd_vendida + ", valor_vendido=" + valor_vendido + "]";
 	}

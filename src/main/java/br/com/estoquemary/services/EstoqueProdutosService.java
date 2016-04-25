@@ -39,6 +39,10 @@ public class EstoqueProdutosService {
 			e.printStackTrace();
 		}
 	}
+
+	public List<EstoqueProdutos> findAll() {
+		return (List<EstoqueProdutos>) estoqueProdutoRepository.findAll();
+	}
 	
 //	public void baixaProdutosEstoque(List<ProdutosPedido> produtos){
 //		try{
