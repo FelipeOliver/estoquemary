@@ -11,7 +11,7 @@
 				<div class="row">
 					<div class="col-xs-2">
 						<label class="label label-default">Código do Produto</label>
-						<input class="form-control input-sm" type="number" ng-model="ctrl.produto.cod_produto" ng-numero ng-Maxlength="8" mask="999.999" ng-Minlength="8" required>
+						<input class="form-control input-sm" type="number" ng-model="ctrl.produto.codProduto" ng-numero ng-Maxlength="8" mask="999.999" ng-Minlength="8" required>
 					</div>
 					<div class="col-xs-4">
 						<label class="label label-default">Descrição</label>
@@ -29,7 +29,7 @@
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
 							<!-- ng-pattern="^[0-9]*\.[0-9]*$"  -->
-							<input class="form-control input-sm" type="text"  ng-model="ctrl.produto.valor_venda" 
+							<input class="form-control input-sm" type="text"  ng-model="ctrl.produto.valorVenda" 
 							ng-dinheiro required>
 							<!-- ng-keyup="dinheiro()" -->
 						</div>
@@ -52,7 +52,7 @@
 				<c:if test="${not empty produtos}">
 					<c:forEach var="produto" items="${produtos}" >
 						<tr>
-							<td style="text-align:center;">${produto.cod_produto}</td>
+							<td style="text-align:center;">${produto.codProduto}</td>
 							<td style="text-align:center;">${produto.descricao}</td>
 						</tr>
 					</c:forEach>

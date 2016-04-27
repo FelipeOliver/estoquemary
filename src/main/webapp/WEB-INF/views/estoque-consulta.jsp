@@ -17,6 +17,7 @@
 					<th style="text-align:center;">Qntd em Estoque</th>
 					<th style="text-align:center;">Valor Custo Médio</th>
 					<th style="text-align:center;">Valor de Venda</th>
+					<th style="text-align:center;">Valor Médio de Venda</th>
 					<th style="text-align:center;">Qntd Vendida</th>
 					<th style="text-align:center;">Valor Total Vendido</th>
 					<th style="text-align:center;">Qntd Comprada</th>
@@ -27,15 +28,16 @@
 				<c:if test="${not empty produtos}">
 					<c:forEach var="produto" items="${produtos}" >
 						<tr>
-							<td style="text-align:center;">${produto.produto.cod_produto}</td>
+							<td style="text-align:center;">${produto.produto.codProduto}</td>
 							<td style="text-align:center;">${produto.produto.descricao.toUpperCase().trim() }</td>
-							<td style="text-align:center;">${produto.qntd_estoque}</td>
-							<td style="text-align:center;">R$ ${produto.valor_medio}</td>
-							<td style="text-align:center;">R$ ${produto.produto.valor_venda}</td>
-							<td style="text-align:center;">${produto.qntd_vendida}</td>
-							<td style="text-align:center;">R$ ${produto.valor_vendido}</td>
-							<td style="text-align:center;">${produto.qntd_comprada}</td>
-							<td style="text-align:center;">R$ ${produto.valor_total}</td>
+							<td style="text-align:center;">${produto.qntdEstoque}</td>
+							<td style="text-align:center;">R$ ${produto.valorMedio}</td>
+							<td style="text-align:center;">R$ ${produto.produto.valorVenda}</td>
+							<td style="text-align:center;">${produto.valorMedioVendido}</td>
+							<td style="text-align:center;">${produto.qntdVendida}</td>
+							<td style="text-align:center;">R$ ${produto.valorVendido}</td>
+							<td style="text-align:center;">${produto.qntdComprada}</td>
+							<td style="text-align:center;">R$ ${produto.valorTotal}</td>
 						</tr>
 					</c:forEach>
 				</c:if>

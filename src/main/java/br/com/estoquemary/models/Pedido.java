@@ -6,56 +6,48 @@ import javax.persistence.Id;
 @Entity
 public class Pedido {
 	@Id
-	private Long cod_pedido;
-//	@ManyToMany
-//	@JoinColumn(name = "cod_produto")
-//	private List<Produto> produto;
-	private String dt_entrega;
-	private String dt_solicitacao;
-	private Double valor_pago;
-	private Double valor_imposto;
-	public Long getCod_pedido() {
-		return cod_pedido;
+	private Long codPedido;
+ 
+	private String dtEntrega;
+	private String dtSolicitacao;
+	private Double valorPago;
+	private Double valorImposto;
+
+	public Long getCodPedido() {
+		return codPedido;
 	}
-	public void setCod_pedido(Long cod_pedido) {
-		this.cod_pedido = cod_pedido;
+	public void setCodPedido(Long codPedido) {
+		this.codPedido = codPedido;
 	}
-	public String getDt_entrega() {
-		return dt_entrega;
+	public String getDtEntrega() {
+		return dtEntrega;
 	}
-	
-//	public List<Produto> getProduto() {
-//		return produto;
-//	}
-//	public void setProduto(List<Produto> produto) {
-//		this.produto = produto;
-//	}
-	public void setDt_entrega(String dt_entrega) {
-		this.dt_entrega = dt_entrega;
+	public void setDtEntrega(String dtEntrega) {
+		this.dtEntrega = dtEntrega;
 	}
-	public String getDt_solicitacao() {
-		return dt_solicitacao;
+	public String getDtSolicitacao() {
+		return dtSolicitacao;
 	}
-	public void setDt_solicitacao(String dt_solicitacao) {
-		this.dt_solicitacao = dt_solicitacao;
+	public void setDtSolicitacao(String dtSolicitacao) {
+		this.dtSolicitacao = dtSolicitacao;
 	}
-	public Double getValor_pago() {
-		return valor_pago;
+	public Double getValorPago() {
+		return valorPago;
 	}
-	public void setValor_pago(Double valor_pago) {
-		this.valor_pago = valor_pago;
+	public void setValorPago(Double valorPago) {
+		this.valorPago = valorPago;
 	}
-	public Double getValor_imposto() {
-		return valor_imposto;
+	public Double getValorImposto() {
+		return valorImposto;
 	}
-	public void setValor_imposto(Double valor_imposto) {
-		this.valor_imposto = valor_imposto;
+	public void setValorImposto(Double valorImposto) {
+		this.valorImposto = valorImposto;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cod_pedido == null) ? 0 : cod_pedido.hashCode());
+		result = prime * result + ((codPedido == null) ? 0 : codPedido.hashCode());
 		return result;
 	}
 	@Override
@@ -67,18 +59,17 @@ public class Pedido {
 		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
-		if (cod_pedido == null) {
-			if (other.cod_pedido != null)
+		if (codPedido == null) {
+			if (other.codPedido != null)
 				return false;
-		} else if (!cod_pedido.equals(other.cod_pedido))
+		} else if (!codPedido.equals(other.codPedido))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Pedido [cod_pedido=" + cod_pedido + ", dt_entrega=" + dt_entrega
-				+ ", dt_solicitacao=" + dt_solicitacao + ", valor_pago=" + valor_pago + ", valor_imposto="
-				+ valor_imposto + "]";
+		return "Pedido [codPedido=" + codPedido + ", dtEntrega=" + dtEntrega + ", dtSolicitacao=" + dtSolicitacao
+				+ ", valorPago=" + valorPago + ", valorImposto=" + valorImposto + "]";
 	}
 	
 }

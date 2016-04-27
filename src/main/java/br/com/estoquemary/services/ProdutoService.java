@@ -19,8 +19,7 @@ public class ProdutoService {
 	private EstoqueProdutoRepository estoqueProdutoRepository;
 	
 	public Produto addProduto(Produto produto) {
-		Produto produto3 = produtoRepository.findOne(produto.getCod_produto());
-		System.out.println("Aqui");
+		Produto produto3 = produtoRepository.findOne(produto.getCodProduto());
 		if(produto3 != null)
 			return produtoRepository.save(produto);
 		else{

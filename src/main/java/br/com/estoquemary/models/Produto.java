@@ -7,28 +7,17 @@ import javax.persistence.Id;
 public class Produto {
 	
 	@Id
-	private Long cod_produto;
+	private Long codProduto;
 	
 	private String descricao;
 	private int pontuacao;
-	private double valor_venda;
+	private double valorVenda;
 	
-//	@OneToOne @JoinColumn(name="id_estoque")
-//	private EstoqueProdutos estoque;
-//	private double valor_compra;
-//	private double valor_desconto;
-	
-//	public EstoqueProdutos getEstoque() {
-//		return estoque;
-//	}
-//	public void setEstoque(EstoqueProdutos estoque) {
-//		this.estoque = estoque;
-//	}
-	public Long getCod_produto() {
-		return cod_produto;
+	public Long getCodProduto() {
+		return codProduto;
 	}
-	public void setCod_produto(Long cod_produto) {
-		this.cod_produto = cod_produto;
+	public void setCodProduto(Long cod_produto) {
+		this.codProduto = cod_produto;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -42,17 +31,17 @@ public class Produto {
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
 	}
-	public double getValor_venda() {
-		return valor_venda;
+	public double getValorVenda() {
+		return valorVenda;
 	}
-	public void setValor_venda(double valor_venda) {
-		this.valor_venda = valor_venda;
+	public void setValorVenda(double valor_venda) {
+		this.valorVenda = valor_venda;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cod_produto == null) ? 0 : cod_produto.hashCode());
+		result = prime * result + ((codProduto == null) ? 0 : codProduto.hashCode());
 		return result;
 	}
 	@Override
@@ -64,17 +53,16 @@ public class Produto {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (cod_produto == null) {
-			if (other.cod_produto != null)
+		if (codProduto == null) {
+			if (other.codProduto != null)
 				return false;
-		} else if (!cod_produto.equals(other.cod_produto))
+		} else if (!codProduto.equals(other.codProduto))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Produto [cod_produto=" + cod_produto + ", descricao=" + descricao + ", pontuacao=" + pontuacao
-				+ ", valor_venda=" + valor_venda + "]";
+		return "Produto [codProduto=" + codProduto + ", descricao=" + descricao + ", pontuacao=" + pontuacao
+				+ ", valorVenda=" + valorVenda + "]";
 	}
-
 }

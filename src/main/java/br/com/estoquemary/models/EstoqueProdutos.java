@@ -10,84 +10,93 @@ import javax.persistence.OneToOne;
 public class EstoqueProdutos {
 	
 	@Id @GeneratedValue
-	private Long id_estoque;
+	private Long idEstoque;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Produto produto;
 	
-	private int qntd_estoque;
-	private Double valor_medio;
-	private int qntd_comprada;
-	private Double valor_total;
-	private int qntd_vendida;
-	private Double valor_vendido;
+	private int qntdEstoque;
+	private Double valorMedio;
+	private int qntdComprada;
+	private Double valorTotal;
+	private int qntdVendida;
+	private Double valorVendido;
+	private Double valorMedioVendido;
 	
 	public EstoqueProdutos(){
 		
 	}
 	public EstoqueProdutos(Produto produto){
 		this.setProduto(produto);
-		this.setQntd_comprada(0);
-		this.setQntd_estoque(0);
-		this.setQntd_vendida(0);
-		this.valor_medio = 0.0;
-		this.valor_total = 0.0;
-		this.valor_vendido = 0.0;
+		this.setQntdComprada(0);
+		this.setQntdEstoque(0);
+		this.setQntdVendida(0);
+		this.valorMedio = 0.0;
+		this.valorTotal = 0.0;
+		this.valorVendido = 0.0;
+		this.valorMedioVendido = 0.0;
 	}
 	
-	public Long getId() {
-		return id_estoque;
-	}
-	public void setId(Long id) {
-		this.id_estoque = id;
-	}
 	public Produto getProduto() {
 		return produto;
 	}
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public int getQntd_estoque() {
-		return qntd_estoque;
+	public Long getId_estoque() {
+		return idEstoque;
 	}
-	public void setQntd_estoque(int qntd_estoque) {
-		this.qntd_estoque = qntd_estoque;
+	public void setId_estoque(Long id_estoque) {
+		this.idEstoque = id_estoque;
 	}
-	public Double getValor_medio() {
-		return valor_medio;
+	public int getQntdEstoque() {
+		return qntdEstoque;
 	}
-	public void setValor_medio(Double valor_medio) {
-		this.valor_medio = valor_medio;
+	public void setQntdEstoque(int qntdEstoque) {
+		this.qntdEstoque = qntdEstoque;
 	}
-	public int getQntd_comprada() {
-		return qntd_comprada;
+	public Double getValorMedio() {
+		return valorMedio;
 	}
-	public void setQntd_comprada(int qntd_comprada) {
-		this.qntd_comprada = qntd_comprada;
+	public void setValorMedio(Double valorMedio) {
+		this.valorMedio = valorMedio;
 	}
-	public Double getValor_total() {
-		return valor_total;
+	public int getQntdComprada() {
+		return qntdComprada;
 	}
-	public void setValor_total(Double valor_total) {
-		this.valor_total = valor_total;
+	public void setQntdComprada(int qntdComprada) {
+		this.qntdComprada = qntdComprada;
 	}
-	public int getQntd_vendida() {
-		return qntd_vendida;
+	public Double getValorTotal() {
+		return valorTotal;
 	}
-	public void setQntd_vendida(int qntd_vendida) {
-		this.qntd_vendida = qntd_vendida;
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
-	public Double getValor_vendido() {
-		return valor_vendido;
+	public int getQntdVendida() {
+		return qntdVendida;
 	}
-	public void setValor_vendido(Double valor_vendido) {
-		this.valor_vendido = valor_vendido;
+	public void setQntdVendida(int qntdVendida) {
+		this.qntdVendida = qntdVendida;
 	}
+	public Double getValorVendido() {
+		return valorVendido;
+	}
+	public void setValorVendido(Double valorVendido) {
+		this.valorVendido = valorVendido;
+	}
+	public Double getValorMedioVendido() {
+		return valorMedioVendido;
+	}
+	public void setValorMedioVendido(Double valorMedioVendido) {
+		this.valorMedioVendido = valorMedioVendido;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id_estoque == null) ? 0 : id_estoque.hashCode());
+		result = prime * result + ((idEstoque == null) ? 0 : idEstoque.hashCode());
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		return result;
 	}
@@ -100,10 +109,10 @@ public class EstoqueProdutos {
 		if (getClass() != obj.getClass())
 			return false;
 		EstoqueProdutos other = (EstoqueProdutos) obj;
-		if (id_estoque == null) {
-			if (other.id_estoque != null)
+		if (idEstoque == null) {
+			if (other.idEstoque != null)
 				return false;
-		} else if (!id_estoque.equals(other.id_estoque))
+		} else if (!idEstoque.equals(other.idEstoque))
 			return false;
 		if (produto == null) {
 			if (other.produto != null)
@@ -112,11 +121,13 @@ public class EstoqueProdutos {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
-		return "EstoqueProdutos [id_estoque=" + id_estoque + ", qntd_estoque=" + qntd_estoque + ", produto=" + produto
-				+ ", valor_medio=" + valor_medio + ", qntd_comprada=" + qntd_comprada + ", valor_total=" + valor_total
-				+ ", qntd_vendida=" + qntd_vendida + ", valor_vendido=" + valor_vendido + "]";
+		return "EstoqueProdutos [idEstoque=" + idEstoque + ", produto=" + produto + ", qntdEstoque=" + qntdEstoque
+				+ ", valorMedio=" + valorMedio + ", qntdComprada=" + qntdComprada + ", valorTotal=" + valorTotal
+				+ ", qntdVendida=" + qntdVendida + ", valorVendido=" + valorVendido + ", valorMedioVendido="
+				+ valorMedioVendido + "]";
 	}
 	
 	

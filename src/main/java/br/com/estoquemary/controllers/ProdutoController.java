@@ -21,11 +21,10 @@ public class ProdutoController {
 	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public ResponseEntity<String> addPProduto(Produto produto){
-		System.out.println("Passou aqui");
 		try{
-			produto.setValor_venda(produto.getValor_venda() * 10);
+			produto.setValorVenda(produto.getValorVenda() * 10);
 			Produto p = produtoService.addProduto(produto);
-			return new ResponseEntity<String>("Produto: "+ p.getCod_produto() + " Salvo com Sucesso", HttpStatus.CREATED);
+			return new ResponseEntity<String>("Produto: "+ p.getCodProduto() + " Salvo com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}

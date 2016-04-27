@@ -21,9 +21,9 @@ public class ProdutosPedido {
 	@OneToOne
 	private Produto produto;
 	
-	private Double valor_pago;
-	private int qntd_produtos;
-	private Double valor_desconto;
+	private Double valorPago;
+	private int qntdProdutos;
+	private Double valorDesconto;
 	
 	public Produto getProduto() {
 		return produto;
@@ -43,23 +43,23 @@ public class ProdutosPedido {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Double getValor_pago() {
-		return valor_pago;
+	public Double getValorPago() {
+		return valorPago;
 	}
-	public void setValor_pago(Double valor_pago) {
-		this.valor_pago = valor_pago;
+	public void setValorPago(Double valor_pago) {
+		this.valorPago = valor_pago;
 	}
-	public int getQntd_produtos() {
-		return qntd_produtos;
+	public int getQntdProdutos() {
+		return qntdProdutos;
 	}
-	public void setQntd_produtos(int qntd_produtos) {
-		this.qntd_produtos = qntd_produtos;
+	public void setQntdProdutos(int qntd_produtos) {
+		this.qntdProdutos = qntd_produtos;
 	}
-	public Double getValor_desconto() {
-		return valor_desconto;
+	public Double getValorDesconto() {
+		return valorDesconto;
 	}
-	public void setValor_desconto(Double valor_desconto) {
-		this.valor_desconto = valor_desconto;
+	public void setValorDesconto(Double valor_desconto) {
+		this.valorDesconto = valor_desconto;
 	}
 	
 	@Override
@@ -99,7 +99,7 @@ public class ProdutosPedido {
 	}
 	@Override
 	public String toString() {
-		return "ProdutosPedido [id=" + id + ", pedido=" + pedido + ", produto=" + produto + ", valor_pago=" + valor_pago
-				+ ", qntd_produtos=" + qntd_produtos + ", valor_desconto=" + valor_desconto + "]";
+		return "ProdutosPedido [id=" + id + ", pedido=" + pedido + ", produto=" + produto + ", valorPago=" + valorPago
+				+ ", qntdProdutos=" + qntdProdutos + ", valorDesconto=" + valorDesconto + "]";
 	}
 }

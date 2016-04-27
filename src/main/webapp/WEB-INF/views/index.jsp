@@ -22,9 +22,10 @@
 	<script type="text/javascript" src="/estoquemary/resources/bootstrap/js/bootstrap.js"></script>
 	
 	<script type="text/javascript" src="/estoquemary/resources/core/js/app.js"></script>
-	<script type="text/javascript" src="/estoquemary/resources/core/js/ProdutoService.js"></script>
-	<script type="text/javascript" src="/estoquemary/resources/core/js/produtoController.js"></script>
-	<script type="text/javascript" src="/estoquemary/resources/core/js/pedidoController.js"></script>
-	<script type="text/javascript" src="/estoquemary/resources/core/js/estoqueController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/services/ProdutoService.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/produtoController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/pedidoController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/estoqueController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/vendaController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/directives/dinheiroMask.js"></script>
 </html>

@@ -53,11 +53,11 @@ public class PedidoController {
 		try{
 			Pedido pedido = new Pedido();
 			JSONObject obj = new JSONObject(teste);
-			pedido.setCod_pedido(obj.getLong("cod_pedido"));
-			pedido.setDt_entrega(obj.getString("dt_entrega"));
-			pedido.setDt_solicitacao(obj.getString("dt_solicitacao"));
-			pedido.setValor_imposto(obj.isNull("valor_imposto")? 0.0 : obj.getDouble("valor_imposto"));
-			pedido.setValor_pago(obj.getDouble("valor_pago"));
+			pedido.setCodPedido(obj.getLong("codPedido"));
+			pedido.setDtEntrega(obj.getString("dtEntrega"));
+			pedido.setDtSolicitacao(obj.getString("dtSolicitacao"));
+			pedido.setValorImposto(obj.isNull("valorImposto")? 0.0 : obj.getDouble("valor_imposto"));
+			pedido.setValorPago(obj.getDouble("valorPago"));
 			
 			JSONArray array = obj.getJSONArray("produto");
 			List<ProdutosPedido> produtos = new ArrayList<ProdutosPedido>();
@@ -65,15 +65,15 @@ public class PedidoController {
 				ProdutosPedido produto = new ProdutosPedido();
 				JSONObject o = array.getJSONObject(i);
 				Produto prod = new Produto();
-				prod.setCod_produto(o.getLong("cod_produto"));
+				prod.setCodProduto(o.getLong("codProduto"));
 				produto.setProduto(prod);
-				System.out.println("Chegou aqui 2: " + prod.getCod_produto());
+				System.out.println("Chegou aqui 2: " + prod.getCodProduto());
 				Pedido ped = new Pedido();
-				ped.setCod_pedido(obj.getLong("cod_pedido"));
+				ped.setCodPedido(obj.getLong("codPedido"));
 				produto.setPedido(ped);
 				
-				produto.setQntd_produtos(o.getInt("qntd_produtos"));
-				produto.setValor_pago(o.getDouble("valor_pago"));
+				produto.setQntdProdutos(o.getInt("qntdProdutos"));
+				produto.setValorPago(o.getDouble("valorPago"));
 				//produto.setValor_desconto(o.getDouble("valor_desconto"));
 				produtos.add(produto);
 			}
@@ -81,7 +81,7 @@ public class PedidoController {
 			Pedido p = pedidoService.addPedido(pedido);
 			produtosPedidoService.addListProdutoPedidos(produtos);
 			
-			return new ResponseEntity<String>("Pedido: "+ p.getCod_pedido() + " Salvo com Sucesso", HttpStatus.CREATED);
+			return new ResponseEntity<String>("Pedido: "+ p.getCodPedido() + " Salvo com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
