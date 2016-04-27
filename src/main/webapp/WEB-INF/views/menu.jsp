@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li ${ escolhido == 'Produto' ? 'class="active"': ''}><a href="/estoquemary/">Produtos <span class="sr-only">(current)</span></a></li>
-        <li ${ escolhido == 'Pedido' ? 'class="active"': ''}><a href="/estoquemary/pedido/add">Pedidos</a></li>
+        <li ${ escolhido == 'Pedido' ? 'class="active"': ''}><a href="/estoquemary/pedido/">Pedidos</a></li>
 		<li ${ escolhido == 'Venda' ? 'class="active"': ''}><a href="/estoquemary/venda/">Venda</a></li>
         <li ${ escolhido == 'Estoque' ? 'class="active"': ''}><a href="/estoquemary/estoque/">Estoque</a></li>
       </ul>

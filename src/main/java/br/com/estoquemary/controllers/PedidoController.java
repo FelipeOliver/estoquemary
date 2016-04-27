@@ -38,7 +38,7 @@ public class PedidoController {
 	@Autowired
 	private EstoqueProdutosService estoqueProdutosService;
 	
-	@RequestMapping("/add")
+	@RequestMapping("/")
 	public ModelAndView pagePedido(){
 		ModelAndView mv = new ModelAndView("index");
 		List<Produto> list = produtoService.findAll();
@@ -51,6 +51,7 @@ public class PedidoController {
 	@RequestMapping(value="/addPedido")
 	public ResponseEntity<String> addPedido(String teste){
 		try{
+			System.out.println(teste);
 			Pedido pedido = new Pedido();
 			JSONObject obj = new JSONObject(teste);
 			pedido.setCodPedido(obj.getLong("codPedido"));
