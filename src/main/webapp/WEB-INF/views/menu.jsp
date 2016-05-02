@@ -20,6 +20,7 @@
         <li ${ escolhido == 'Pedido' ? 'class="active"': ''}><a href="/estoquemary/pedido/">Pedidos</a></li>
 		<li ${ escolhido == 'Venda' ? 'class="active"': ''}><a href="/estoquemary/venda/">Venda</a></li>
         <li ${ escolhido == 'Estoque' ? 'class="active"': ''}><a href="/estoquemary/estoque/">Estoque</a></li>
+        <li ${ escolhido == 'Cliente' ? 'class="active"': ''}><a href="/estoquemary/cliente/">Cliente</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
