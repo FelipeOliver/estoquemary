@@ -15,6 +15,7 @@
 			<div class="col-xs-2">
 				<label class="label label-default">Cliente</label>
 				<input class="form-control input-sm"  type="number" ng-model="ctrl.venda.cliente.idCliente" ng-numero required>
+				<a href="javascript:$('#myModalCliente').modal('show');"><i class="glyphicon glyphicon-search"></i></a>
 			</div>			
 			<div class="col-xs-2">
 				<label class="label label-default">Valor Total Pago</label>

@@ -3,12 +3,9 @@ package br.com.estoquemary.models;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import br.com.estoquemary.models.list.TipoPele;
 
 @Entity
 public class Cliente {
@@ -21,6 +18,7 @@ public class Cliente {
 	
 	@OneToMany
 	private List<Endereco> enderecos;
+	
 	@OneToMany
 	private List<Telefone> telefones;
 
@@ -29,8 +27,8 @@ public class Cliente {
 	
 	private String flagWhatsapp;
 	
-	@Enumerated
-	private Enum<TipoPele> tipoPele;
+//	@Enumerated(EnumType.STRING)
+	private String tipoPele;
 	private String corBase;
 	
 	public List<Endereco> getEnderecos() {
@@ -63,10 +61,10 @@ public class Cliente {
 	public void setFlagWhatsapp(String flagWhatsapp) {
 		this.flagWhatsapp = flagWhatsapp;
 	}
-	public Enum<TipoPele> getTipoPele() {
+	public String getTipoPele() {
 		return tipoPele;
 	}
-	public void setTipoPele(Enum<TipoPele> tipoPele) {
+	public void setTipoPele(String tipoPele) {
 		this.tipoPele = tipoPele;
 	}
 	public String getCorBase() {
@@ -97,7 +95,8 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", nome=" + nome + ", dataAniversario=" + dataAniversario
-				+ ", enderecos=" + enderecos + ", telefones=" + telefones + ", email=" + email + ", anfitria="
+				//+ ", enderecos=" + enderecos + ", telefones=" + telefones 
+				+ ", email=" + email + ", anfitria="
 				+ anfitria + ", flagWhatsapp=" + flagWhatsapp + ", tipoPele=" + tipoPele + ", corBase=" + corBase + "]";
 	}
 	@Override
