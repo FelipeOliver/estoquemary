@@ -58,7 +58,9 @@ public class PedidoController {
 			pedido.setDtEntrega(obj.getString("dtEntrega"));
 			pedido.setDtSolicitacao(obj.getString("dtSolicitacao"));
 			pedido.setValorImposto(obj.isNull("valorImposto")? 0.0 : obj.getDouble("valor_imposto"));
+			pedido.setValorImposto(pedido.getValorImposto() * 10);
 			pedido.setValorPago(obj.getDouble("valorPago"));
+			pedido.setValorPago(pedido.getValorPago() * 10);
 			
 			JSONArray array = obj.getJSONArray("produto");
 			List<ProdutosPedido> produtos = new ArrayList<ProdutosPedido>();
@@ -75,6 +77,7 @@ public class PedidoController {
 				
 				produto.setQntdProdutos(o.getInt("qntdProdutos"));
 				produto.setValorPago(o.getDouble("valorPago"));
+				produto.setValorPago(produto.getValorPago() * 10);
 				//produto.setValor_desconto(o.getDouble("valor_desconto"));
 				produtos.add(produto);
 			}
