@@ -3,6 +3,7 @@ package br.com.estoquemary.controllers;
 
 import java.util.List;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +42,13 @@ public class ClienteController {
 		}
 	}
 	
-	@RequestMapping(value="/findByName/{nome}", produces="application/json")
+	@RequestMapping(value="/findByName/{nome}")
 	public ResponseEntity<String> findByName(@PathVariable String nome){
 		try{
 			System.out.println("Chegou aqui: " + nome);
 			List<Cliente> clientes = clienteService.findByName(nome);
 			System.out.println(clientes.toString() + ' ' + HttpStatus.OK);
-			return new ResponseEntity<String>(clientes.toString(), HttpStatus.OK);
+			return new ResponseEntity<String>(new ObjectMapper().writeValueAsString(clientes), HttpStatus.OK);
 		}catch(Exception e){
 			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
