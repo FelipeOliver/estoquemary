@@ -1,4 +1,4 @@
-app.controller('clienteController',['$scope', '$http', function($scope, $http){
+app.controller('clienteController', ['$scope', '$http', function ($scope, $http) {
 	
 	var self = this;
 	
@@ -14,7 +14,7 @@ app.controller('clienteController',['$scope', '$http', function($scope, $http){
 		.success(function(data){
 			alert(data);
 		});
-	};
+	}
 	
 	self.pesquisaCliente = function(){
 		console.log(self.campoPesquisaCliente);
@@ -24,5 +24,6 @@ app.controller('clienteController',['$scope', '$http', function($scope, $http){
 			console.log(data);
 		});
 		console.log(self.clientes);
-	};
+    }
+    
 }]);
