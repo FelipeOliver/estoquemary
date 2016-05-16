@@ -1,4 +1,4 @@
-app.controller('clienteController', ['$scope', '$http', function ($scope, $http) {
+app.controller('clienteController',['$scope', '$http', function($scope, $http){
 	
 	var self = this;
 	
@@ -14,16 +14,22 @@ app.controller('clienteController', ['$scope', '$http', function ($scope, $http)
 		.success(function(data){
 			alert(data);
 		});
-	}
+	};
 	
 	self.pesquisaCliente = function(){
 		console.log(self.campoPesquisaCliente);
-		clienteService.findByName(self.campoPesquisaCliente)
-		.always(function(data){
-			self.clientes = data;
-			console.log(data);
+		$http.get("/estoquemary/cliente/findByName/" + self.campoPesquisaCliente).
+		then(function(response){
+			self.teste(response.data);
 		});
+//		clienteService.findByName(self.campoPesquisaCliente)
+//		.then(function(data){
+//			self.teste(data.data);
+//		});
+	};
+	
+	self.teste = function(data){
+		self.clientes = data;
 		console.log(self.clientes);
-    }
-    
+	}
 }]);

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Cliente {
 	
@@ -16,9 +18,11 @@ public class Cliente {
 	private String nome;
 	private String dataAniversario;
 	
+	@JsonIgnore
 	@OneToMany
 	private List<Endereco> enderecos;
 	
+	@JsonIgnore
 	@OneToMany
 	private List<Telefone> telefones;
 
