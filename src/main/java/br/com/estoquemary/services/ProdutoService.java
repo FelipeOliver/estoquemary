@@ -23,10 +23,10 @@ public class ProdutoService {
 		if(produto3 != null){
 			EstoqueProdutos estoque2 = this.estoqueProdutoRepository.findByProduto(produto3);
 			if(estoque2 == null){
-				estoque2 = new EstoqueProdutos(produto);
+				estoque2 = new EstoqueProdutos(produto3);
 				estoque2 = estoqueProdutoRepository.save(estoque2);
 			}
-			return produtoRepository.save(produto);
+			return produto3;//produtoRepository.save(produto3);
 		}
 		else{
 			EstoqueProdutos estoque = new EstoqueProdutos(produto);

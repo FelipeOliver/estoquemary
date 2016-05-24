@@ -12,7 +12,7 @@ public class EstoqueProdutos {
 	@Id @GeneratedValue
 	private Long idEstoque;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Produto produto;
 	
 	private int qntdEstoque;
