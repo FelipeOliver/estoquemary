@@ -32,7 +32,9 @@ app.controller('produtoController',['$scope', '$http', function($scope, $http){
 				location.reload();
 			})
 			.error(function(erro){
-				console.log(erro);
+				if(erro.status == 409){
+					alert(erro.responseText);
+				}
 			});
 		}
 	};

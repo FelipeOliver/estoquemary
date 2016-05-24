@@ -57,11 +57,8 @@ public class ProdutoController {
 	@RequestMapping(value="/remove/{id}", method=RequestMethod.GET)
 	public ResponseEntity<String> removeProduto(@PathVariable String id){
 		try{
-			System.out.println(id);
 			Long codProduto = Long.parseLong(id);
-			System.out.println(codProduto);
 			Produto produto = this.produtoService.findOne(codProduto);
-			System.out.println(produto);
 			if(produto != null){
 				int produtosOnPedido = this.produtosPedidoService.countByProduto(produto);
 				if(produtosOnPedido <= 0){
@@ -70,7 +67,7 @@ public class ProdutoController {
 					this.produtoService.removeProduto(produto);
 					return new ResponseEntity<String>("Produto: "+ id + " Deletado com Sucesso", HttpStatus.CREATED);
 				}else{
-					return new ResponseEntity<String>("O Produto: "+ id + " Está vinculado há pelo menos um Pedido", HttpStatus.CONFLICT);
+					return new ResponseEntity<String>("O Produto: "+ id + " Está vinculado a pelo menos um Pedido", HttpStatus.CONFLICT);
 				}
 			}else{
 				return new ResponseEntity<String>("Não existe o Produto: "+ id, HttpStatus.NOT_FOUND);

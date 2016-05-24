@@ -20,8 +20,14 @@ public class ProdutoService {
 	
 	public Produto addProduto(Produto produto) {
 		Produto produto3 = produtoRepository.findOne(produto.getCodProduto());
-		if(produto3 != null)
+		if(produto3 != null){
+			EstoqueProdutos estoque2 = this.estoqueProdutoRepository.findByProduto(produto3);
+			if(estoque2 == null){
+				estoque2 = new EstoqueProdutos(produto);
+				estoque2 = estoqueProdutoRepository.save(estoque2);
+			}
 			return produtoRepository.save(produto);
+		}
 		else{
 			EstoqueProdutos estoque = new EstoqueProdutos(produto);
 			estoque = estoqueProdutoRepository.save(estoque);
