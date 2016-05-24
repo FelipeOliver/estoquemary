@@ -35,4 +35,12 @@ public class ProdutoService {
 	public List<Produto> findAll() {
 		return (List<Produto>) produtoRepository.findAll();
 	}
+
+	public void removeProduto(Produto Produto) {
+		produtoRepository.delete(Produto);
+	}
+
+	public Produto findOne(Long id) {
+		return this.produtoRepository.findOne(id);
+	}
 }

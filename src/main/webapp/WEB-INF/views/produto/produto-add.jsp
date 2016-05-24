@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <div class="container" ng-controller="produtoController as ctrl">
+	<span ng-init='ctrl.produtos = ${produtos}'></span>
 	<div class="panel panel-default">
 		<div class="panel-heading" style="background-color:#E7E3E2;color:black;"><!-- #CCA498 -->
 			<h2 style="text-align:center;">Adicionar um novo <span style="color:#CCA498;">Produto</span></h2>
@@ -39,25 +40,32 @@
 					<button type="submit" class="btn btn-primary btn-md" ng-disabled="ctrl.formAddProduto.$invalid" style="margin-top: 10px; margin-left: 15px;"><i class="glyphicon glyphicon-plus"></i> Salvar</button>
 				</div>
 			</form>
-		</div>
-		
-		<table class="table table-striped table-condensed">
-			<thead>
-				<tr>
-					<th style="text-align:center;">Código Produto</th>
-					<th style="text-align:center;">Produto</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${not empty produtos}">
-					<c:forEach var="produto" items="${produtos}" >
+			<br>
+			<div class="col-lg-12">
+				<label class="label label-default">Pesquisar: </label><input class="form-control input-sm" ng-model="ctrl.campoPesquisa" type="text">
+			</div>
+			<br>
+			<div class="col-lg-12">
+				<table class="table table-striped table-condensed table-bordered">
+					<thead>
 						<tr>
-							<td style="text-align:center;">${produto.codProduto}</td>
-							<td style="text-align:center;">${produto.descricao}</td>
+							<th style="text-align:center;">Código Produto</th>
+							<th style="text-align:center;">Produto</th>
+							<th style="text-align:center;"><i class="glyphicon glyphicon-tasks"></i></th>
 						</tr>
-					</c:forEach>
-				</c:if>
-			</tbody>
-		</table>
+					</thead>
+					<tbody>
+						<tr ng-repeat="produto in ctrl.produtos | filter: ctrl.campoPesquisa" >
+							<td style="text-align:center;">{{ produto.codProduto }}</td>
+							<td style="text-align:center;">{{produto.descricao}}</td>
+							<td style="text-align:center;">
+								<a ng-click="ctrl.carregaProduto(produto)"><i class="glyphicon glyphicon-pencil"></i></a>
+								<a ng-click="ctrl.deleteProduto(produto)" style="color:red;"><i class="glyphicon glyphicon-trash"></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>

@@ -55,6 +55,19 @@ public class EstoqueProdutosService {
 		}
 		return lp;
 	}
+
+	public void removeEstoqueByCodProduto(Produto produto) {
+		System.out.println(produto);
+		this.estoqueProdutoRepository.deleteByProduto(produto);
+	}
+
+	public EstoqueProdutos findByProduto(Produto produto) {
+		return this.estoqueProdutoRepository.findByProduto(produto);
+	}
+
+	public void delete(EstoqueProdutos estoque) {
+		this.estoqueProdutoRepository.delete(estoque);
+	}
 	
 //	public void baixaProdutosEstoque(List<ProdutosPedido> produtos){
 //		try{

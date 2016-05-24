@@ -6,16 +6,34 @@ app.controller('produtoController',['$scope', '$http', function($scope, $http){
 	
 	self.produto;
 	
+	self.produtos = [];
+	
 	self.addProduto = function() {
 		//$.post("/produto/add", self.produto)
 		produtoService.add(self.produto)
 		.success(function(data){
 			alert(data);
+			location.reload();
 		});
-		//$.get("/produto/findAll")
-		produtoService.findAll()
-		.success(function(data){
-			self.produtos = data;
-		});
+	};
+	
+	self.carregaProduto = function(produto){
+		produto.valorVenda = produto.valorVenda * 100;
+		self.produto = produto;
+	};
+	
+	self.deleteProduto = function(produto){
+		var c = confirm("Você deseja excluir o produto: " + produto.descricao + " ?");
+		if(c){
+			console.log(String(produto.codProduto));
+			produtoService.remove(String(produto.codProduto))
+			.success(function(data){
+				alert(data);
+				location.reload();
+			})
+			.error(function(erro){
+				console.log(erro);
+			});
+		}
 	};
 }]);

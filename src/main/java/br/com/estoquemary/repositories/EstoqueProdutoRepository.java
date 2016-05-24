@@ -16,4 +16,6 @@ public interface EstoqueProdutoRepository extends CrudRepository<EstoqueProdutos
 	
 	List<EstoqueProdutos> findByQntdEstoqueIsGreaterThan(int qntd_estoque);
 
+	List<EstoqueProdutos> deleteByProduto(Produto produto);
+
 }
