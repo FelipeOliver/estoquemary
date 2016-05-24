@@ -26,7 +26,7 @@ public class ProdutoController {
 		List<Produto> list = produtoService.findAll();
 		System.out.println(list.toString());
 		mv.addObject("produtos", list);
-		mv.addObject("pagina", "produto-add.jsp");
+		mv.addObject("pagina", "produto/produto-add.jsp");
 		mv.addObject("escolhido", "Produto");
 		return mv;
 	}

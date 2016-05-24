@@ -43,7 +43,7 @@ public class PedidoController {
 		ModelAndView mv = new ModelAndView("index");
 		List<Produto> list = produtoService.findAll();
 		mv.addObject("produtosDisponiveis", new Gson().toJson(list));
-		mv.addObject("pagina", "pedido-add.jsp");
+		mv.addObject("pagina", "pedido/pedido-add.jsp");
 		mv.addObject("escolhido", "Pedido");
 		return mv;
 	}

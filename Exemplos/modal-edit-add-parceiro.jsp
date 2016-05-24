@@ -55,7 +55,7 @@
 					</table>
 				</div>
 				<br>
-				<div style="width:100%; height:90px; overflow: auto;" id="tpEndTable" class="miniTdv panel panel-default" hidden>
+				<div style="width:100%; height:90px; overflow: auto;" id="tpEndTable" class="miniTdv panel panel-default" hidden="hidden">
 						<table class="miniTdv table table-bordered table-responsive table-condensed">
 							<thead>
 								<th>CNPJ/CPF</th>

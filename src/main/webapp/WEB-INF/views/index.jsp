@@ -8,9 +8,9 @@
 	</head>
 	
 	<body ng-app="EstoqueMaryApp">
-		<c:import url="modal-cliente.jsp"></c:import>
+		<c:import url="cliente/modal-cliente.jsp"></c:import>
 		<div class="row" style="margin-bottom:80px;">
-			<c:import url="menu.jsp"></c:import>
+			<c:import url="core/menu.jsp"></c:import>
 		</div>
 		<div class="row">
 			<c:import url="${pagina}"></c:import>

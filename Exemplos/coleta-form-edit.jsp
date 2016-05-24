@@ -93,7 +93,7 @@
 									<select id="cbArmazem" size="1" name="cbArmazem" class="miniTdv form-control" disabled required>
 										<option selected value="${coleta.armazem.codigo}">${coleta.armazem.codigo} - ${coleta.armazem.descricao}</option>
 									</select>
-									<input id="armazemCodigo" name="armazem.codigo" value="${coleta.armazem.codigo}" hidden>
+									<input id="armazemCodigo" type="hidden" name="armazem.codigo" value="${coleta.armazem.codigo}">
 								</div>
 								<div class="miniTdv text-right col-sm-1">
 									<label>Pedido</label>
@@ -115,8 +115,8 @@
 									</div>
 									<div class="miniTdv col-sm-2">
 										<input type="text" name="txtDataProgramacao" value="${coleta.dataProgramacao} ${coleta.horaProgramacao}:00" class="miniTdv form-control" readonly />
-										<input name="dataProgramacao" value="${coleta.dataProgramacao}" hidden/>
-										<input name="horaProgramacao" value="${coleta.horaProgramacao}" hidden/>
+										<input name="dataProgramacao" type="hidden" value="${coleta.dataProgramacao}" />
+										<input name="horaProgramacao" value="${coleta.horaProgramacao}" type="hidden"/>
 									</div>
 									<div class="miniTdv text-right col-sm-2">
 										<label data-toggle="tooltip" data-placement="left" data-original-title="Data/Hora da Autorização">
@@ -184,7 +184,7 @@
 								<div class="miniTdv col-sm-10">
 									<input id="remetNome" type="text" name="clienteEndColeta.cliente.razaoSocial" value="${coleta.clienteEndColeta.cliente.razaoSocial}" class="miniTdv form-control" readonly />
 								</div>
-								<input  id="grupoEconomicoRemetente" name="clienteEndColeta.cliente.grupoEconomico.codigo" value="${coleta.clienteEndColeta.cliente.grupoEconomico.codigo}" hidden/>
+								<input  id="grupoEconomicoRemetente" name="clienteEndColeta.cliente.grupoEconomico.codigo" value="${coleta.clienteEndColeta.cliente.grupoEconomico.codigo}" type="hidden"/>
 							</div>
 							<div class="miniTdv col-sm-3">
 								<div class="miniTdv text-right col-sm-3">
@@ -194,7 +194,7 @@
 									<select id="remetTpEnd" size="1" name="cbClienteEndColetaTipo" class="miniTdv form-control" disabled required>
 										<option selected value="${coleta.clienteEndColeta.tipo}">${coleta.clienteEndColeta.tipo} - ${coleta.clienteEndColeta.tipoDescricao }</option>
 									</select>
-									<input id="remetTipo" name="clienteEndColeta.tipo" value="${coleta.clienteEndColeta.tipo}" hidden>
+									<input id="remetTipo" name="clienteEndColeta.tipo" value="${coleta.clienteEndColeta.tipo}" type="hidden">
 								</div>	
 							</div>
 					</div>
@@ -281,7 +281,7 @@
 								<div class="miniTdv col-sm-10">
  									<input id="destNome" type="text" name="clienteEndEntrega.cliente.razaoSocial" value="${ coleta.clienteEndEntrega.cliente.razaoSocial}" class="miniTdv form-control" readonly />
 								</div>
-								<input id="grupoEconomicoDestinatario" name="clienteEndEntrega.cliente.grupoEconomico.codigo" value="${coleta.clienteEndEntrega.cliente.grupoEconomico.codigo}" hidden/>
+								<input id="grupoEconomicoDestinatario" name="clienteEndEntrega.cliente.grupoEconomico.codigo" value="${coleta.clienteEndEntrega.cliente.grupoEconomico.codigo}" type="hidden"/>
 							</div>
 							<div class="miniTdv col-sm-3">
 								<div class="miniTdv text-right col-sm-3">
@@ -291,7 +291,7 @@
 									<select id="destTpEnd" size="1" name="clienteEndEntregaTipo" class="miniTdv form-control" disabled required>
 										<option selected  value="${coleta.clienteEndEntrega.tipo}">${coleta.clienteEndEntrega.tipo} - ${coleta.clienteEndEntrega.tipoDescricao}</option>
 									</select>
-									<input id="destTipo" name="clienteEndEntrega.tipo" value="${coleta.clienteEndEntrega.tipo}" hidden>
+									<input id="destTipo" name="clienteEndEntrega.tipo" value="${coleta.clienteEndEntrega.tipo}" type="hidden">
 								</div>	
 							</div>
 					</div>
@@ -371,7 +371,7 @@
 									<div class="miniTdv radio">
 										<label><input name="rModalidade" type="radio" value="E" ${coleta.modalidade=='E'?'checked':''} disabled /> Entregar</label>
 									</div>
-									<input name="modalidade" value="${coleta.modalidade}" hidden>
+									<input name="modalidade" value="${coleta.modalidade}" type="hidden">
 								</div>
 								<div class="miniTdv col-sm-3">
 									<label >Prioridade</label><br>
@@ -380,10 +380,10 @@
 									<div class="miniTdv radio">		
 										<label><input name="rColeta" type="radio" value="E" ${coleta.tpColeta=='E'?'checked':''} disabled /> Expressa</label>
 									</div>
-									<input id="tpColeta" name="tpColeta" value="${coleta.tpColeta}" hidden/>
+									<input id="tpColeta" name="tpColeta" value="${coleta.tpColeta}" type="hidden"/>
 								</div>
 								<div class="miniTdv col-sm-5">
-									<input id="pagadorFrete" name="pagadorFrete" value="${coleta.pagadorFrete == null ? 'O': coleta.pagadorFrete}" hidden/>
+									<input id="pagadorFrete" name="pagadorFrete" value="${coleta.pagadorFrete == null ? 'O': coleta.pagadorFrete}" type="hidden"/>
 									<label  > Pagador Frete: ${coleta.cnpjPagadorFrete }</label><br>
 									<div class="miniTdv col-sm-6">
 										<div class="miniTdv radio">
@@ -415,7 +415,7 @@
 									<select id="cbTpCarga" name="tipoCarga.codigo" class="miniTdv form-control" disabled>
 										<option selected value="${coleta.tipoCarga.codigo}">${coleta.tipoCarga.descricao}</option>
 									</select>
-									<input id="tipoCargaDescricao" name="tipoCarga.descricao" value="${coleta.tipoCarga.descricao}" hidden/>
+									<input id="tipoCargaDescricao" name="tipoCarga.descricao" value="${coleta.tipoCarga.descricao}" type="hidden"/>
 								</div>
 							</div>
 							<div class="miniTdv col-sm-5">
@@ -426,7 +426,7 @@
 									<select id="cbTpVeiculo" size="1" name="tipoVeiculo.codigo" class="miniTdv form-control" disabled>
 										<option selected value="${coleta.tipoVeiculo.codigo}">${coleta.tipoVeiculo.descricao}</option>
 									</select>
-									<input id="tipoVeiculoDescricao" name="tipoVeiculo.descricao" value="${coleta.tipoVeiculo.descricao}" hidden/>
+									<input id="tipoVeiculoDescricao" name="tipoVeiculo.descricao" value="${coleta.tipoVeiculo.descricao}" type="hidden"/>
 								</div>
 							</div>
 						</div>
@@ -516,7 +516,7 @@
 							<div class="miniTdv col-sm-9">
 								<input id="tfTelefone" type="text" name="contato.telefone" value="${coleta.contato.telefone}" class="miniTdv form-control" readonly />
 							</div>
-							<input name="contato.cnpj" value="${coleta.contato.cnpj == null ? '00000000000000' : coleta.contato.cnpj}" hidden />
+							<input name="contato.cnpj" value="${coleta.contato.cnpj == null ? '00000000000000' : coleta.contato.cnpj}" type="hidden" />
 						</div>
 						<div class="miniTdv row">
 							<div class="miniTdv col-sm-5">
@@ -548,7 +548,7 @@
 							<br></br>
 							<textarea id="taColetaObs" type="text" rows=3 class="textAreaMiniTDV" readonly>${coleta.observacao}</textarea>
 							<textarea id="taUsuObs" type="text" rows=4 class="textAreaMiniTDV" disabled></textarea>
-							<input id="observacao" name="observacao" value="" hidden/>
+							<input id="observacao" name="observacao" value="" type="hidden"/>
 					</div>
 				</div>	
 				<!-- Itens da Coleta -->
@@ -580,9 +580,9 @@
 									<tbody>
 									 <c:forEach var="item" items="${coletaItems}">
 									 	<tr id="linhaItem${item.sequencia}">
-									 		<td id="item${item.sequencia}coletaNCompra" hidden>${coleta.nCompra}</td>
-									 		<td id="item${item.sequencia}coletaCiclo" hidden>${coleta.ciclo}</td>
-									 		<td id="item${item.sequencia}sequencia" hidden>${item.sequencia}</td>
+									 		<td id="item${item.sequencia}coletaNCompra" class="hidden">${coleta.nCompra}</td>
+									 		<td id="item${item.sequencia}coletaCiclo" class="hidden">${coleta.ciclo}</td>
+									 		<td id="item${item.sequencia}sequencia" class="hidden">${item.sequencia}</td>
 	            							<td id="item${item.sequencia}mercadoriaDescricao" class="miniTdv ${item.sequencia}">${item.mercadoria.descricao}</td>
 											<td class="${item.sequencia}" id="item${item.sequencia}peso">${item.peso}</td>
 											<td class="${item.sequencia}" id="item${item.sequencia}largura">${item.largura}</td>
@@ -727,25 +727,25 @@
 				</div>
 				
 				<!-- Campos para Completar o xml da coleta no momento do Update -->
-				<input id="cnpjSolicitante" name="cnpjSolicitante" value="${coleta.cnpjSolicitante}" hidden/>
-				<input id="coletaTpFrete" name="coletaTpFrete.id" value="${coleta.coletaTpFrete.id == null ? 0 : coleta.coletaTpFrete.id}" hidden/>
-				<input id="descricaoNFs" name="descricaoNFs" value="${coleta.descricaoNFs}" hidden/>
-				<input id="ocorrenciaCodigo" name="ocorrencia.codigo" value="${coleta.ocorrencia.codigo}" hidden/>
-				<input id="pesoBalanca" name="pesoBalanca" value="${coleta.pesoBalanca}" hidden/>
-				<input id="prioridade" name="prioridade" value="${coleta.prioridade}" hidden/>
-				<input id="quantidadeNfs" name="quantidadeNfs" value="${coleta.quantidadeNfs}" hidden/>
-				<input id="usuarioCadastro" name="usuarioCadastro.codigo" value="${coleta.usuarioCadastro.codigo}" hidden/>
-				<input id="valorColeta" name="valorColeta" value="${coleta.valorColeta < 0.1 ? 0.1 : coleta.valorColeta}" hidden/>
-				<input id="coletaOrigem" name="coletaOrigem.codigo" value="${coleta.coletaOrigem.codigo == null ? 4 : coleta.coletaOrigem.codigo}" hidden/>
-				<input id="cnpjPagadorFrete" name="cnpjPagadorFrete" value="${coleta.cnpjPagadorFrete}" hidden/>
-				<input id="consolidaArmazem" name="consolidaArmazem" value="${coleta.consolidaArmazem}" hidden/>
-				<input id="flagImportacao" value="${flagImportacao}" hidden/>		
+				<input id="cnpjSolicitante" name="cnpjSolicitante" value="${coleta.cnpjSolicitante}" type="hidden"/>
+				<input id="coletaTpFrete" name="coletaTpFrete.id" value="${coleta.coletaTpFrete.id == null ? 0 : coleta.coletaTpFrete.id}" type="hidden"/>
+				<input id="descricaoNFs" name="descricaoNFs" value="${coleta.descricaoNFs}" type="hidden"/>
+				<input id="ocorrenciaCodigo" name="ocorrencia.codigo" value="${coleta.ocorrencia.codigo}" type="hidden"/>
+				<input id="pesoBalanca" name="pesoBalanca" value="${coleta.pesoBalanca}" type="hidden"/>
+				<input id="prioridade" name="prioridade" value="${coleta.prioridade}" type="hidden"/>
+				<input id="quantidadeNfs" name="quantidadeNfs" value="${coleta.quantidadeNfs}" type="hidden"/>
+				<input id="usuarioCadastro" name="usuarioCadastro.codigo" value="${coleta.usuarioCadastro.codigo}" type="hidden"/>
+				<input id="valorColeta" name="valorColeta" value="${coleta.valorColeta < 0.1 ? 0.1 : coleta.valorColeta}" type="hidden"/>
+				<input id="coletaOrigem" name="coletaOrigem.codigo" value="${coleta.coletaOrigem.codigo == null ? 4 : coleta.coletaOrigem.codigo}" type="hidden"/>
+				<input id="cnpjPagadorFrete" name="cnpjPagadorFrete" value="${coleta.cnpjPagadorFrete}" type="hidden"/>
+				<input id="consolidaArmazem" name="consolidaArmazem" value="${coleta.consolidaArmazem}" type="hidden"/>
+				<input id="flagImportacao" value="${flagImportacao}" type="hidden"/>		
 			 </form>
 	    </div>
 			
  
 	  </div> <!--/ container -->
-			  <input id="message" name="message" value="${message}" hidden>
+			  <input id="message" name="message" value="${message}" type="hidden">
 	  
 	  <c:import url="modal-edit-parceiros.jsp"></c:import>
 	  <c:import url="modal-edit-add-parceiro.jsp"></c:import>

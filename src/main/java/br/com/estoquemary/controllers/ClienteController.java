@@ -26,7 +26,7 @@ public class ClienteController {
 	@RequestMapping("/")
 	public ModelAndView getHome(){
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("pagina", "cliente-add.jsp");
+		mv.addObject("pagina", "cliente/cliente-add.jsp");
 		mv.addObject("escolhido", "Cliente");
 		return mv;
 	}

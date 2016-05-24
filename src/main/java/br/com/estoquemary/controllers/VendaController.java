@@ -25,7 +25,7 @@ public class VendaController {
 		List<Produto> lp = estoqueProdutosService.findByQntdEstoque();
 		System.out.println(lp.toString());
 		mv.addObject("produtosDisponiveis", new Gson().toJson(lp));
-		mv.addObject("pagina", "venda-add.jsp");
+		mv.addObject("pagina", "venda/venda-add.jsp");
 		mv.addObject("escolhido", "Venda");
 		return mv;
 	}

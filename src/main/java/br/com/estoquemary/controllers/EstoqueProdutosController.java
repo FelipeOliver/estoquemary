@@ -20,7 +20,7 @@ public class EstoqueProdutosController {
 	@RequestMapping("/")
 	public ModelAndView findAll(){
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("pagina", "estoque-consulta.jsp");
+		mv.addObject("pagina", "produto/estoque-consulta.jsp");
 		try{
 			List<EstoqueProdutos> list =  estoqueProdutosService.findAll();
 			mv.addObject("produtos", list);
