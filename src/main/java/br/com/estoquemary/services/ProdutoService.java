@@ -26,7 +26,7 @@ public class ProdutoService {
 				estoque2 = new EstoqueProdutos(produto3);
 				estoque2 = estoqueProdutoRepository.save(estoque2);
 			}
-			return produto3;//produtoRepository.save(produto3);
+			return produtoRepository.save(produto3);
 		}
 		else{
 			EstoqueProdutos estoque = new EstoqueProdutos(produto);

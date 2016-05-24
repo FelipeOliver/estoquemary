@@ -18,9 +18,10 @@ app.controller('produtoController',['$scope', '$http', function($scope, $http){
 	};
 	
 	self.carregaProduto = function(produto){
-		produto.valorVenda = produto.valorVenda * 100;
+		if(String(produto.valorVenda).indexOf('.') == -1)
+			produto.valorVenda =  String(produto.valorVenda) + ".00";
 		self.produto = produto;
-	};
+	};	
 	
 	self.deleteProduto = function(produto){
 		var c = confirm("Você deseja excluir o produto: " + produto.descricao + " ?");
