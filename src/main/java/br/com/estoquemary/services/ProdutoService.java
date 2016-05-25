@@ -19,6 +19,7 @@ public class ProdutoService {
 	private EstoqueProdutoRepository estoqueProdutoRepository;
 	
 	public Produto addProduto(Produto produto) {
+		System.out.println(produto.toString());
 		Produto produto3 = produtoRepository.findOne(produto.getCodProduto());
 		if(produto3 != null){
 			EstoqueProdutos estoque2 = this.estoqueProdutoRepository.findByProduto(produto3);
@@ -26,13 +27,13 @@ public class ProdutoService {
 				estoque2 = new EstoqueProdutos(produto3);
 				estoque2 = estoqueProdutoRepository.save(estoque2);
 			}
-			return produtoRepository.save(produto3);
+			return produtoRepository.save(produto);
 		}
 		else{
+			Produto produto2 = produtoRepository.save(produto);
+			
 			EstoqueProdutos estoque = new EstoqueProdutos(produto);
 			estoque = estoqueProdutoRepository.save(estoque);
-			
-			Produto produto2 = produtoRepository.save(produto);
 				
 			return produto2;
 		}

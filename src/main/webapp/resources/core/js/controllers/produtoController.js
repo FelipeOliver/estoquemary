@@ -9,8 +9,15 @@ app.controller('produtoController',['$scope', '$http', function($scope, $http){
 	self.produtos = [];
 	
 	self.addProduto = function() {
+		console.log(self.produto.valorVenda);
 		//$.post("/produto/add", self.produto)
-		produtoService.add(self.produto)
+//		produtoService.add(self.produto)
+//		.success(function(data){
+//			alert(data);
+//			location.reload();
+//		});
+		
+		$http.post("/estoquemary/produto/add", self.produto)		
 		.success(function(data){
 			alert(data);
 			location.reload();
@@ -18,8 +25,8 @@ app.controller('produtoController',['$scope', '$http', function($scope, $http){
 	};
 	
 	self.carregaProduto = function(produto){
-		if(String(produto.valorVenda).indexOf('.') == -1)
-			produto.valorVenda =  String(produto.valorVenda) + ".00";
+//		if(String(produto.valorVenda).indexOf('.') == -1)
+//			produto.valorVenda =  String(produto.valorVenda) + ".00";
 		self.produto = produto;
 	};	
 	

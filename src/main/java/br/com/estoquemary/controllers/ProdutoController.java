@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,13 +44,14 @@ public class ProdutoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public ResponseEntity<String> addPProduto(Produto produto){
+	@RequestMapping(value="/add", method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<String> addPProduto(@RequestBody Produto produto){
 		try{
-			produto.setValorVenda(produto.getValorVenda() * 10);
+//			produto.setValorVenda(produto.getValorVenda() * 10);
 			Produto p = produtoService.addProduto(produto);
 			return new ResponseEntity<String>("Produto: "+ p.getCodProduto() + " Salvo com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

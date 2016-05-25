@@ -27,17 +27,27 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 	};
 	
 	self.addPedido = function(){
-		$('form[name="formAddPedido"] input').attr('disabled', true);
-		$('form[name="formAddPedido"] button').attr('disabled', true);
+		$http.post("/estoquemary/pedido/addPedido", self.pedido)
+		.success(function(data){
+			self.salvo = true;
+			alert("Pedido Salvo");
+		});
 	};
 	
 	self.addList = function(){
-		self.pedido.produto = self.produtosAdicionados;
-		console.log(angular.toJson(self.pedido));
-		$.get("/estoquemary/pedido/addPedido?teste=" + angular.toJson(self.pedido))
+		console.log(self.produtosAdicionados);
+		var ll = [];
+		self.produtosAdicionados.foreach(function(i,e){
+			var lista;
+			lista.produto.codProduto = e.codProduto;
+			lista.pedido.codPedido = self.pedido.codPedido;
+			lista.valorPago = e.valorPago;
+			lista.qntdProdutos = e.qntdProdutos;
+			ll.push(lista);
+		});
+		$http.post("/estoquemary/pedidoProdutos/addList", ll)
 		.success(function(data){
 			alert(data);
-			
 		});		
 	}
 

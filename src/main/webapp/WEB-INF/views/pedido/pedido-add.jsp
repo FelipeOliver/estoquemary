@@ -6,23 +6,23 @@
 		<div class="row">
 			<div class="col-xs-2">
 				<label class="label label-default">Código do Pedido</label>
-				<input class="form-control input-sm" type="number" ng-model="ctrl.pedido.codPedido" ng-numero required>
+				<input class="form-control input-sm" ng-disabled="ctrl.salvo" type="number" ng-model="ctrl.pedido.codPedido" ng-numero required>
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Data de Entrega</label>
-				<input class="form-control input-sm" type="date" ng-model="ctrl.pedido.dtEntrega" required>
+				<input class="form-control input-sm" ng-disabled="ctrl.salvo" type="date" ng-model="ctrl.pedido.dtEntrega" required>
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Data de Solicitação</label>
-				<input class="form-control input-sm"  type="date" ng-model="ctrl.pedido.dtSolicitacao" required>
+				<input class="form-control input-sm"  ng-disabled="ctrl.salvo" type="date" ng-model="ctrl.pedido.dtSolicitacao" required>
 			</div>			
 			<div class="col-xs-2">
 				<label class="label label-default">Valor Pago</label>
-				<input class="form-control input-sm" type="text" ng-model="ctrl.pedido.valorPago" ng-dinheiro required>
+				<input class="form-control input-sm" ng-disabled="ctrl.salvo" type="text" ng-model="ctrl.pedido.valorPago" ng-dinheiro required>
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Valor do Imposto</label>
-				<input class="form-control input-sm" type="text" ng-model="ctrl.pedido.valorImposto" ng-dinheiro>
+				<input class="form-control input-sm" ng-disabled="ctrl.salvo" type="text" ng-model="ctrl.pedido.valorImposto" ng-dinheiro>
 			</div>
 		</div>
 		<div class="row">
@@ -100,9 +100,11 @@
 						<tbody>
 							<tr ng-repeat="produto in ctrl.produtosAdicionados " >
 								<td><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
-								<td>{{ produto.codProduto }}</td>
+								<td >{{ produto.codProduto }}</td>
 								<td>{{ produto.descricao }}</td>
 <!-- 								<td>{{ produto.pontuacao }}</td> -->
+								<td hidden="hidden"><input ng-model="produto.produto.codProduto" value="{{produto.codProduto}}" class="form-control"></td>
+								<td hidden="hidden"><input ng-model="produto.pedido.codProduto" value="ctrl.pedido.codPedido" class="form-control"></td>
 								<td><input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero></td>
 								<td><input ng-model="produto.valorPago" value="0.0" class="form-control" ng-dinheiro></td>
 							</tr>	

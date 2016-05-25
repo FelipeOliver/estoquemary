@@ -21,19 +21,27 @@
 					<div class="col-xs-2">
 						<label class="label label-default">Pontuação</label>
 						<div class="input-group">
-							<input class="form-control input-sm" type="number"  ng-model="ctrl.produto.pontuacao"  ng-numero required>
+							<input class="form-control input-sm" 
+								   ng-class="{'has-error': ctrl.formAddProduto.pontuacao.$invalid}"
+							       type="number" name="pontuacao" 
+							       ng-model="ctrl.produto.pontuacao" 
+							       ng-pattern="/[0-9]*/g" required>
 							<div class="input-group-addon">Pontos</div>
 						</div>
+						<span class="text-danger" ng-show="ctrl.formAddProduto.pontuacao.$invalid">Número inválido</span>
 					</div>
 					<div class="col-xs-2">
 						<label class="label label-default">Valor de Venda</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
 							<!-- ng-pattern="^[0-9]*\.[0-9]*$"  -->
-							<input class="form-control input-sm" type="text"  ng-model="ctrl.produto.valorVenda" 
-							ng-dinheiro required>
-							<!-- ng-keyup="dinheiro()" -->
+							<input class="form-control input-sm" 
+							       type="number" step="0.01" 
+							       name="valorVenda" ng-model="ctrl.produto.valorVenda" 
+							       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<!-- ng-keyup="dinheiro()" ng-dinheiro -->
 						</div>
+						<span class="text-danger" ng-show="ctrl.formAddProduto.valorVenda.$invalid">Número inválido</span>
 					</div>
 				</div>
 				<div class="row">
