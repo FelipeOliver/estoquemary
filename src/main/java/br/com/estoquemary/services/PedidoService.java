@@ -16,4 +16,8 @@ public class PedidoService {
 		return pedidoRepository.save(pedido);
 	}
 
+	public Pedido findOne(String codPedido) {
+		return this.pedidoRepository.findOne(Long.parseLong(codPedido));
+	}
+
 }

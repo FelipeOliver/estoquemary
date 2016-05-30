@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.estoquemary.models.Pedido;
 import br.com.estoquemary.models.Produto;
 import br.com.estoquemary.models.ProdutosPedido;
 import br.com.estoquemary.repositories.ProdutosPedidoRepository;
@@ -21,6 +22,11 @@ public class ProdutosPedidoService {
 
 	public int countByProduto(Produto produto) {
 		return this.produtosPedidoRepository.countByProduto(produto);
+	}
+
+	public List<ProdutosPedido> findByPedido(Pedido pedido) {
+		return produtosPedidoRepository.findByPedido(pedido);
+		
 	}
 
 }

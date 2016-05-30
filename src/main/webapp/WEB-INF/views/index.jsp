@@ -29,6 +29,7 @@
 	
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/produtoController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/pedidoController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/pedido-viewController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/estoqueController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/vendaController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/clienteController.js"></script>

@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <div class="container" ng-controller="pedidoController as ctrl">
-	<span ng-init='ctrl.produtosDisponiveis = ${produtosDisponiveis}'></span>
+	<c:if test="${not empty produtosDisponiveis}">
+		<span ng-init='ctrl.produtosDisponiveis = ${produtosDisponiveis}'></span>
+	</c:if>
+	<c:if test="${not empty produtosAdicionados}">
+		<span ng-init='ctrl.produtosAdicionados = ${produtosAdicionados}'></span>
+	</c:if>
+	<c:if test="${not empty pedido}">
+		<span ng-init='ctrl.pedido = ${pedido}'></span>
+	</c:if>
 	<form ng-submit="ctrl.addPedido()" name="formAddPedido" style="margin-top:20px">
 		<div class="row">
 			<div class="col-xs-2">
@@ -100,8 +108,8 @@
 						<tbody>
 							<tr ng-repeat="produto in ctrl.produtosAdicionados " >
 								<td><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
-								<td >{{ produto.codProduto }}</td>
-								<td>{{ produto.descricao }}</td>
+								<td >{{ produto.produto.codProduto }}</td>
+								<td>{{ produto.produto.descricao }}</td>
 <!-- 								<td>{{ produto.pontuacao }}</td> -->
 								<td hidden="hidden"><input ng-model="produto.produto.codProduto" value="{{produto.codProduto}}" class="form-control"></td>
 								<td hidden="hidden"><input ng-model="produto.pedido.codProduto" value="ctrl.pedido.codPedido" class="form-control"></td>

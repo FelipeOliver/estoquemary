@@ -34,6 +34,7 @@ public class ProdutosPedidoController {
 
 			return new ResponseEntity<String>("Lista com "+ p.size() +"produtos no pedido"+ p.get(0).getPedido() +"Salva com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

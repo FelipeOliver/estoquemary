@@ -1,13 +1,17 @@
-app.controller('pedidoController',['$scope', '$http', function($scope, $http){
+app.controller('pedidoViewController',['$scope', '$http', function($scope, $http){
 	
 	var self = this;
-	self.salvo = false;
 	
 	self.produtoService = new ProdutoService();
 	
-	self.produtosDisponiveis = []; //= JSON.parse(JSON.stringify(self.produtos));
+	self.produtos = []; //= JSON.parse(JSON.stringify(self.produtos));
 	
-	self.produtosAdicionados = [];
+	self.pedido;
+	
+	self.liberaLinha = function(pedido){
+		console.log(pedido);
+	}
+	
 	
 	self.addProduto = function(produto) {
 		var i = self.produtosDisponiveis.indexOf(produto);
@@ -16,26 +20,7 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 			self.produtosDisponiveis.splice(i,1);
 		}
 	};
-	 var _init = function(){
-		 $scope.$apply(function(){
-			 self.produtosAdicionados.forEach(function(e, i){
-				var a;
-				self.produtosDisponiveis.forEach(function(f, i){
-					if(e.produto.codProduto == f.codProduto){
-						a = i;
-					}
-				});
-				
-				if(a != -1){
-					self.produtosDisponiveis.splice(a,1);
-				}
-			 });
-			if(self.pedido != null){
-				self.salvo = true;
-			}
-		});
-	 }
-	 window.onload =_init;
+
 	self.rmvProduto = function(produto) {
 		console.log(produto.quantidade);
 		var i = self.produtosAdicionados.indexOf(produto);
@@ -56,19 +41,12 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 	self.addList = function(){
 		console.log(self.produtosAdicionados);
 		var ll = [];
-		self.produtosAdicionados.forEach(function(e,i){
+		self.produtosAdicionados.foreach(function(i,e){
 			var lista;
-			lista = {
-					produto : {
-						codProduto : e.codProduto
-					},
-					pedido : {
-						codPedido : self.pedido.codPedido
-					},
-					valorPago : e.valorPago,
-					qntdProdutos : e.qntdProdutos
-			};
-			console.log(ll);
+			lista.produto.codProduto = e.codProduto;
+			lista.pedido.codPedido = self.pedido.codPedido;
+			lista.valorPago = e.valorPago;
+			lista.qntdProdutos = e.qntdProdutos;
 			ll.push(lista);
 		});
 		$http.post("/estoquemary/pedidoProdutos/addList", ll)
@@ -76,4 +54,5 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 			alert(data);
 		});		
 	}
+
 }]);
