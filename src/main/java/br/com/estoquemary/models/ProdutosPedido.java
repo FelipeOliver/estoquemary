@@ -3,22 +3,24 @@ package br.com.estoquemary.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Entity 
+@Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"codPedido", "codProduto"})})
 public class ProdutosPedido {
 
 	@Id @GeneratedValue
 	private Long id;
 	
-//	@ManyToMany
-//	@JoinColumn(name = "cod_pedido")
-//	private List<Pedido> pedido;
-	
 	@OneToOne
+	@JoinColumn(name="codPedido")
 	private Pedido pedido;
 	
 	@OneToOne
+	@JoinColumn(name="codProduto")
 	private Produto produto;
 	
 	private Double valorPago;
@@ -66,7 +68,6 @@ public class ProdutosPedido {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((pedido == null) ? 0 : pedido.hashCode());
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		return result;
@@ -80,11 +81,6 @@ public class ProdutosPedido {
 		if (getClass() != obj.getClass())
 			return false;
 		ProdutosPedido other = (ProdutosPedido) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		if (pedido == null) {
 			if (other.pedido != null)
 				return false;

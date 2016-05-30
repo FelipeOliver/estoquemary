@@ -6,6 +6,7 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 	self.produtoService = new ProdutoService();
 	
 	self.produtosDisponiveis = []; //= JSON.parse(JSON.stringify(self.produtos));
+	self.disponiveis = [];
 	
 	self.produtosAdicionados = [];
 	
@@ -20,22 +21,40 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 		 $scope.$apply(function(){
 			 self.produtosAdicionados.forEach(function(e, i){
 				var a;
-				self.produtosDisponiveis.forEach(function(f, i){
+				self.disponiveis.forEach(function(f, i){
 					if(e.produto.codProduto == f.codProduto){
 						a = i;
 					}
 				});
 				
 				if(a != -1){
-					self.produtosDisponiveis.splice(a,1);
+					self.disponiveis.splice(a,1);
 				}
 			 });
+			 
+			 self.disponiveis.forEach(function(e,i){
+				var lista = {
+						id: null,
+						produto : {
+							codProduto : e.codProduto,
+							descricao : e.descricao,
+							pontuacao : e.pontuacao
+						},
+						pedido : {
+							codPedido : null
+						},
+						valorPago : e.valorPago,
+						qntdProdutos : e.qntdProdutos
+				};
+				self.produtosDisponiveis.push(lista);
+			 });
+			 
 			if(self.pedido != null){
 				self.salvo = true;
 			}
 		});
 	 }
-	 window.onload =_init;
+	window.onload =_init;
 	self.rmvProduto = function(produto) {
 		console.log(produto.quantidade);
 		var i = self.produtosAdicionados.indexOf(produto);
@@ -55,23 +74,11 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 	
 	self.addList = function(){
 		console.log(self.produtosAdicionados);
-		var ll = [];
 		self.produtosAdicionados.forEach(function(e,i){
-			var lista;
-			lista = {
-					produto : {
-						codProduto : e.codProduto
-					},
-					pedido : {
-						codPedido : self.pedido.codPedido
-					},
-					valorPago : e.valorPago,
-					qntdProdutos : e.qntdProdutos
-			};
-			console.log(ll);
-			ll.push(lista);
+			e.pedido = self.pedido;
 		});
-		$http.post("/estoquemary/pedidoProdutos/addList", ll)
+		console.log(self.produtosAdicionados);
+		$http.post("/estoquemary/pedidoProdutos/addList", self.produtosAdicionados)
 		.success(function(data){
 			alert(data);
 		});		

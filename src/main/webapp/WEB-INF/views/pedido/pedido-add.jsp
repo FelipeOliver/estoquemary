@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <div class="container" ng-controller="pedidoController as ctrl">
 	<c:if test="${not empty produtosDisponiveis}">
-		<span ng-init='ctrl.produtosDisponiveis = ${produtosDisponiveis}'></span>
+		<span ng-init='ctrl.disponiveis = ${produtosDisponiveis}'></span>
 	</c:if>
 	<c:if test="${not empty produtosAdicionados}">
 		<span ng-init='ctrl.produtosAdicionados = ${produtosAdicionados}'></span>
@@ -26,11 +26,21 @@
 			</div>			
 			<div class="col-xs-2">
 				<label class="label label-default">Valor Pago</label>
-				<input class="form-control input-sm" ng-disabled="ctrl.salvo" type="text" ng-model="ctrl.pedido.valorPago" ng-dinheiro required>
+				<input class="form-control input-sm" 
+				       type="number" step="0.01" 
+				       ng-disabled="ctrl.salvo"
+				       name="valorPago" ng-model="ctrl.pedido.valorPago" 
+				       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+				<span class="text-danger" ng-show="ctrl.formAddPedido.valorPago.$invalid">Número inválido</span>
 			</div>
 			<div class="col-xs-2">
-				<label class="label label-default">Valor do Imposto</label>
-				<input class="form-control input-sm" ng-disabled="ctrl.salvo" type="text" ng-model="ctrl.pedido.valorImposto" ng-dinheiro>
+				<label class="label label-default">Valor do Frete</label>
+				<input class="form-control input-sm" 
+				       type="number" step="0.01" 
+				       ng-disabled="ctrl.salvo"
+				       name="valorImposto" ng-model="ctrl.pedido.valorImposto" 
+				       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+				<span class="text-danger" ng-show="ctrl.formAddPedido.valorImposto.$invalid">Número inválido</span>
 			</div>
 		</div>
 		<div class="row">
@@ -66,9 +76,9 @@
 					</thead>
 					<tbody >
 						<tr ng-repeat="produto in ctrl.produtosDisponiveis | filter: ctrl.filtro" ng-click="ctrl.addProduto(produto)">
-							<td>{{ produto.codProduto }}</td>
-							<td>{{ produto.descricao }}</td>
-							<td>{{ produto.pontuacao }}</td>
+							<td>{{ produto.produto.codProduto }}</td>
+							<td>{{ produto.produto.descricao }}</td>
+							<td>{{ produto.produto.pontuacao }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -113,7 +123,12 @@
 <!-- 								<td>{{ produto.pontuacao }}</td> -->
 								<td hidden="hidden"><input ng-model="produto.produto.codProduto" value="{{produto.codProduto}}" class="form-control"></td>
 								<td hidden="hidden"><input ng-model="produto.pedido.codProduto" value="ctrl.pedido.codPedido" class="form-control"></td>
-								<td><input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero></td>
+<!-- 								<input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero> -->
+								<td><input class="form-control input-sm" 
+				       					type="number" step="0.01" 
+				       					ng-class="{qntdProdutos{{produto.produto.codProduto}}.$invalid ? 'text-danger': ''}"
+				       					name="qntdProdutos{{produto.produto.codProduto}}" ng-model="produto.qntdProdutos" 
+				       					ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>
 								<td><input ng-model="produto.valorPago" value="0.0" class="form-control" ng-dinheiro></td>
 							</tr>	
 						</tbody>

@@ -16,4 +16,6 @@ public interface ProdutosPedidoRepository extends CrudRepository<ProdutosPedido,
 
 	public List<ProdutosPedido> findByPedido(Pedido codPedido);
 
+	public List<ProdutosPedido> findByProduto(Produto produto);
+
 }

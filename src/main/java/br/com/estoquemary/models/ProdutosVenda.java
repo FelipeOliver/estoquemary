@@ -3,18 +3,24 @@ package br.com.estoquemary.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"idVenda","codProduto"}))
 public class ProdutosVenda {
 
 	@Id @GeneratedValue
 	private Long id;
 	
 	@OneToOne
+	@JoinColumn(name="idVenda")
 	private Venda venda;
 	
 	@OneToOne
+	@JoinColumn(name="codProduto")
 	private Produto produto;
 	
 	private int qntdProdutos;
