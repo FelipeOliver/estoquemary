@@ -124,11 +124,9 @@
 								<td hidden="hidden"><input ng-model="produto.produto.codProduto" value="{{produto.codProduto}}" class="form-control"></td>
 								<td hidden="hidden"><input ng-model="produto.pedido.codProduto" value="ctrl.pedido.codPedido" class="form-control"></td>
 <!-- 								<input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero> -->
-								<td><input class="form-control input-sm" 
-				       					type="number" step="0.01" 
-				       					ng-class="{qntdProdutos{{produto.produto.codProduto}}.$invalid ? 'text-danger': ''}"
-				       					name="qntdProdutos{{produto.produto.codProduto}}" ng-model="produto.qntdProdutos" 
-				       					ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>
+								<td><input type="number" step="0.01" 
+				       					   ng-model="produto.qntdProdutos" 
+				       					   ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>
 								<td><input ng-model="produto.valorPago" value="0.0" class="form-control" ng-dinheiro></td>
 							</tr>	
 						</tbody>
