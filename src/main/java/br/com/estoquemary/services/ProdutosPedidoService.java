@@ -29,4 +29,8 @@ public class ProdutosPedidoService {
 		
 	}
 
+	public void rmvProduto(ProdutosPedido pedidoProdutos) {
+		this.produtosPedidoRepository.delete(pedidoProdutos);
+	}
+
 }

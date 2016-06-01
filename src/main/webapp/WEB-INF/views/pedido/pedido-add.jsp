@@ -117,7 +117,8 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="produto in ctrl.produtosAdicionados " >
-								<td><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
+								<td ng-if="produto.id === null"><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
+								<td ng-if="produto.id != null"><a ng-click="ctrl.rmvProdutoDb(produto)"><i class="glyphicon glyphicon-minus"></i></a></td>
 								<td >{{ produto.produto.codProduto }}</td>
 								<td>{{ produto.produto.descricao }}</td>
 <!-- 								<td>{{ produto.pontuacao }}</td> -->
@@ -127,7 +128,8 @@
 								<td><input type="number" step="0.01" 
 				       					   ng-model="produto.qntdProdutos" 
 				       					   ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>
-								<td><input ng-model="produto.valorPago" value="0.0" class="form-control" ng-dinheiro></td>
+								<td><input ng-model="produto.valorPago" value="0.0" class="form-control"></td>
+								
 							</tr>	
 						</tbody>
 					</table>

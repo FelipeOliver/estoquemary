@@ -55,6 +55,7 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 		});
 	 }
 	window.onload =_init;
+	
 	self.rmvProduto = function(produto) {
 		console.log(produto.quantidade);
 		var i = self.produtosAdicionados.indexOf(produto);
@@ -63,6 +64,17 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 			self.produtosAdicionados.splice(i,1);
 		}
 	};
+	
+	self.rmvProdutoDb = function(produto) {
+		var c = confirm("Você deseja excluir o produto: " + produto.produto.descricao + " ?");
+		if(c){
+			$http.post("/estoquemary/pedidoProdutos/rmvProduto", produto)
+			.success(function(data){
+				self.rmvProduto(produto);
+				alert("Produto deletado do Pedido com Sucesso");
+			});
+		}
+	}
 	
 	self.addPedido = function(){
 		$http.post("/estoquemary/pedido/addPedido", self.pedido)

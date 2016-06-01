@@ -21,9 +21,9 @@ Screens to do:
 
 - Pedido
   * -Create-
-  * Delete
-  * Update
-  * Search
+  * -Delete-
+  * -Update-
+  * -Search-
 
 - Venda
   * Create

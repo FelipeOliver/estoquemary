@@ -26,48 +26,8 @@ public class EstoqueProdutosService {
 	
 	public void insereProdutosEstoque(List<ProdutosPedido> produtos){
 		try{
-//			for(int i = 0; i < produtos.size(); i++){
-//				EstoqueProdutos estoque = estoqueProdutoRepository.findByProduto(produtos.get(i).getProduto());
-//	
-//				estoque.setQntdEstoque(estoque.getQntdEstoque() + produtos.get(i).getQntdProdutos());
-//				estoque.setQntdComprada(estoque.getQntdComprada() + produtos.get(i).getQntdProdutos());
-//	
-//				Double valorTotal = (produtos.get(i).getValorPago() * produtos.get(i).getQntdProdutos());
-//				estoque.setValorTotal(estoque.getValorTotal() + valorTotal);
-//				
-//				Double valorMedio = estoque.getValorMedio();
-//				if(valorMedio > 0)
-//					valorMedio = valorTotal / estoque.getQntdComprada();
-//				else
-//					valorMedio = produtos.get(i).getValorPago();
-//				estoque.setValorMedio(valorMedio);
-//		
-//				estoqueProdutoRepository.save(estoque);
-//			}
 			for(int i = 0; i < produtos.size(); i++){
-				
-				EstoqueProdutos estoque = estoqueProdutoRepository.findByProduto(produtos.get(i).getProduto());
-				
-				List<ProdutosPedido> produtosPedido = this.produtosPedidoRepository.findByProduto(produtos.get(i).getProduto());
-				int quantidadeComprada = 0;
-				double valorComprado = 0;
-				for(int j = 0; j < produtosPedido.size(); j++){
-					quantidadeComprada = quantidadeComprada + produtosPedido.get(j).getQntdProdutos();
-					valorComprado = valorComprado + (produtosPedido.get(j).getValorPago()* produtosPedido.get(j).getQntdProdutos());
-				}
-				
-				List<ProdutosVenda> produtosVenda = this.produtosVendaReposiTory.findByProduto(produtos.get(i).getProduto());
-				int quantidadeVendida = 0;
-				for(int j = 0; j < produtosVenda.size(); j++){
-					quantidadeVendida = quantidadeVendida + produtosVenda.get(j).getQntdProdutos();
-				}
-				
-				estoque.setQntdEstoque(quantidadeComprada - quantidadeVendida);
-				estoque.setQntdComprada(quantidadeComprada);
-				estoque.setValorTotal(valorComprado);
-				estoque.setValorMedio(valorComprado / quantidadeComprada);
-		
-				estoqueProdutoRepository.save(estoque);
+				this.atualizaEstoque(produtos.get(i).getProduto());
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -98,5 +58,38 @@ public class EstoqueProdutosService {
 
 	public void delete(EstoqueProdutos estoque) {
 		this.estoqueProdutoRepository.delete(estoque);
+	}
+
+	public void atualizaEstoque(Produto produto) {
+		EstoqueProdutos estoque = estoqueProdutoRepository.findByProduto(produto);
+		
+		List<ProdutosPedido> produtosPedido = this.produtosPedidoRepository.findByProduto(produto);
+		int quantidadeComprada = 0;
+		double valorComprado = 0;
+		for(int j = 0; j < produtosPedido.size(); j++){
+			quantidadeComprada = quantidadeComprada + produtosPedido.get(j).getQntdProdutos();
+			valorComprado = valorComprado + (produtosPedido.get(j).getValorPago()* produtosPedido.get(j).getQntdProdutos());
+		}
+		
+		List<ProdutosVenda> produtosVenda = this.produtosVendaReposiTory.findByProduto(produto);
+		int quantidadeVendida = 0;
+		double valorVendido = 0;
+		for(int j = 0; j < produtosVenda.size(); j++){
+			quantidadeVendida = quantidadeVendida + produtosVenda.get(j).getQntdProdutos();
+			valorVendido = valorVendido + produtosVenda.get(j).getValorVendido();
+		}
+		int a;
+		estoque.setQntdEstoque(quantidadeComprada - quantidadeVendida);
+		estoque.setQntdComprada(quantidadeComprada);
+		estoque.setValorTotal(valorComprado);
+		estoque.setQntdVendida(quantidadeVendida);
+		estoque.setValorVendido(valorVendido);
+		a = (quantidadeVendida == 0? 1 :quantidadeVendida);
+		estoque.setValorMedioVendido(valorVendido / a);
+		System.out.println(valorVendido / a);
+		a = (quantidadeComprada == 0? 1:quantidadeComprada);
+		estoque.setValorMedio(valorComprado / a);
+		
+		estoqueProdutoRepository.save(estoque);
 	}
 }
