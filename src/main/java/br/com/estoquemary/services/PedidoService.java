@@ -1,5 +1,7 @@
 package br.com.estoquemary.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,14 @@ public class PedidoService {
 
 	public Pedido findOne(String codPedido) {
 		return this.pedidoRepository.findOne(Long.parseLong(codPedido));
+	}
+
+	public List<Pedido> findAll() {
+		return (List<Pedido>) this.pedidoRepository.findAll();
+	}
+
+	public void deletePedido(Pedido pedido) {
+		this.pedidoRepository.delete(pedido);
 	}
 
 }

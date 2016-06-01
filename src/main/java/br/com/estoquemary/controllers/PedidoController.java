@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import br.com.estoquemary.models.Pedido;
 import br.com.estoquemary.models.Produto;
 import br.com.estoquemary.models.ProdutosPedido;
+import br.com.estoquemary.services.EstoqueProdutosService;
 import br.com.estoquemary.services.PedidoService;
 import br.com.estoquemary.services.ProdutoService;
 import br.com.estoquemary.services.ProdutosPedidoService;
@@ -33,13 +34,16 @@ public class PedidoController {
 
 	@Autowired
 	private ProdutosPedidoService produtosPedidoService;
+
+	private EstoqueProdutosService estoqueProdutosService;
 	
 	@RequestMapping("/")
 	public ModelAndView pagePedido(){
 		ModelAndView mv = new ModelAndView("index");
-		List<Produto> list = produtoService.findAll();
-		mv.addObject("produtosDisponiveis", new Gson().toJson(list));
-		mv.addObject("pagina", "pedido/pedido-add.jsp");
+//		List<Produto> list = produtoService.findAll();
+		List<Pedido> list = pedidoService.findAll();
+		mv.addObject("pedido", new Gson().toJson(list));
+		mv.addObject("pagina", "pedido/pedido-view.jsp");
 		mv.addObject("escolhido", "Pedido");
 		return mv;
 	}
@@ -71,6 +75,23 @@ public class PedidoController {
 			return new ResponseEntity<String>("Pedido: "+ p.getCodPedido() + " Salvo com Sucesso", HttpStatus.CREATED);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<String> deletePedido(@RequestBody Pedido pedido){
+		try{
+			List<ProdutosPedido> produtos = this.produtosPedidoService.findByPedido(pedido);
+			for(int i = 0; i < produtos.size(); i++){
+				this.produtosPedidoService.rmvProduto(produtos.get(i));
+				this.estoqueProdutosService.atualizaEstoque(produtos.get(i).getProduto());
+			}
+			this.pedidoService.deletePedido(pedido);
+			return new ResponseEntity<String>("Pedido: "+ pedido.getCodPedido() + " Deletado com Sucesso", HttpStatus.CREATED);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
