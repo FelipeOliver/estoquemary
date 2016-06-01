@@ -28,4 +28,5 @@
 			</tbody>
 		</table>
 	</div>
+	<a href="/estoquemary/pedido/newPedido" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-plus"> Novo Pedido</i></a>
 </div>

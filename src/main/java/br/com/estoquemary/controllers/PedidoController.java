@@ -96,20 +96,11 @@ public class PedidoController {
 		}
 	}
 	
-	@RequestMapping(value="/viewPedido/{codPedido}", method=RequestMethod.GET)
-	public ModelAndView viewPedido(@PathVariable String codPedido){
+	@RequestMapping(value="/newPedido", method=RequestMethod.GET)
+	public ModelAndView newPedido(){
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("pagina", "pedido/pedido-view.jsp");
+		mv.addObject("pagina", "pedido/pedido-add.jsp");
 		mv.addObject("escolhido", "Pedido");
-		try{
-			Pedido pedido = this.pedidoService.findOne(codPedido);;
-			List<ProdutosPedido> produtos = this.produtosPedidoService.findByPedido(pedido);
-			mv.addObject("pedido", new Gson().toJson(pedido));
-			System.out.println(new Gson().toJson(pedido));
-			mv.addObject("produtos", new Gson().toJson(produtos));
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 		return mv;
 	}
 
