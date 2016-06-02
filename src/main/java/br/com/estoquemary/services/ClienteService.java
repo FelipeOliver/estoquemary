@@ -19,7 +19,7 @@ public class ClienteService {
 	}
 
 	public List<Cliente> findByName(String nome) {
-		return clienteRepository.findByNome(nome);
+		return clienteRepository.findByNomeContainingIgnoreCase(nome);
 	}
 
 }

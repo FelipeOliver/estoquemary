@@ -1,36 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <div class="container" ng-controller="vendaController as ctrl">
-	<span ng-init='ctrl.produtosDisponiveis = ${produtosDisponiveis}'></span>
-	<form ng-submit="ctrl.addPedido()" name="formAddVenda" style="margin-top:20px">
+	<c:if test="${not empty produtosDisponiveis}">
+		<span ng-init='ctrl.disponiveis = ${produtosDisponiveis}'></span>
+	</c:if>
+	<c:if test="${not empty produtosAdicionados}">
+		<span ng-init='ctrl.produtosAdicionados = ${produtosAdicionados}'></span>
+	</c:if>
+	<c:if test="${not empty venda}">
+		<span ng-init='ctrl.venda = ${venda}'></span>
+	</c:if>
+	
+	<c:import url="cliente/modal-cliente.jsp"></c:import>
+	<form ng-submit="ctrl.addVenda()" name="formAddVenda" style="margin-top:20px">
 		<div class="row">
 			<div class="col-xs-2">
 				<label class="label label-default">Código da venda</label>
-				<input class="form-control input-sm" type="number" ng-model="ctrl.venda.id" ng-numero required>
+				<input class="form-control input-sm" type="number" ng-model="ctrl.venda.idVenda" disabled>
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Data da Venda</label>
-				<input class="form-control input-sm" type="date" ng-model="ctrl.venda.dataVenda" required>
+				<input class="form-control input-sm" type="date" ng-model="ctrl.venda.dataVenda" ng-disabled="ctrl.salvo" required>
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Cliente</label>
-				<input class="form-control input-sm"  type="number" ng-model="ctrl.venda.cliente.idCliente" ng-numero required>
-				<a href="javascript:$('#myModalCliente').modal('show');"><i class="glyphicon glyphicon-search"></i></a>
+				<input class="form-control input-sm"  type="text" ng-model="ctrl.venda.cliente.nome" readonly required>
+				<button class="btn btn-link" onclick="$('#myModalCliente').modal('show');" ng-disabled="ctrl.salvo"><i class="glyphicon glyphicon-search"></i></button>
 			</div>			
 			<div class="col-xs-2">
 				<label class="label label-default">Valor Total Pago</label>
-				<input class="form-control input-sm" type="text" ng-model="ctrl.venda.valorTotalVenda" ng-dinheiro required>
+				<input class="form-control input-sm" 
+				       type="number" step="0.01" 
+				       ng-disabled="ctrl.salvo"
+				       name="valorPago" ng-model="ctrl.venda.valorTotalVenda" 
+				       ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+				<span class="text-danger" ng-show="ctrl.formAddVenda.valorPago.$invalid">Número inválido</span>
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Forma de pagamento </label>
-				<input class="form-control input-sm" type="text" ng-model="ctrl.venda.formaPagamento">
+				<input class="form-control input-sm" type="text" ng-model="ctrl.venda.formaPagamento" ng-disabled="ctrl.salvo">
 			</div>
 			<div class="col-xs-2">
 				<label class="label label-default">Status </label>
-				<input class="form-control input-sm" type="text" ng-model="ctrl.venda.status" >
+				<input class="form-control input-sm" type="text" ng-model="ctrl.venda.status" ng-disabled="ctrl.salvo">
 		</div>
 		<div class="row">
-			<button type="submit" ng-disabled="formAddVenda.$invalid" class="btn btn-success btn-md" style="margin-top: 10px; margin-left: 15px;">Salvar</button>
+			<button type="submit" ng-disabled="formAddVenda.$invalid||ctrl.salvo" class="btn btn-success btn-md" style="margin-top: 10px; margin-left: 15px;">Salvar</button>
 		</div>
 	</form>
 	
@@ -62,9 +77,9 @@
 					</thead>
 					<tbody >
 						<tr ng-repeat="produto in ctrl.produtosDisponiveis | filter: ctrl.filtro" ng-click="ctrl.addProduto(produto)">
-							<td>{{ produto.codProduto }}</td>
-							<td>{{ produto.descricao }}</td>
-							<td>{{ produto.pontuacao }}</td>
+							<td>{{ produto.produto.codProduto }}</td>
+							<td>{{ produto.produto.descricao }}</td>
+							<td>{{ produto.produto.pontuacao }}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -103,12 +118,16 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="produto in ctrl.produtosAdicionados " >
-								<td><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
-								<td>{{ produto.codProduto }}</td>
-								<td>{{ produto.descricao }}</td>
+								<td ng-if="produto.id === null"><a ng-click="ctrl.rmvProduto(produto)"><i class="glyphicon glyphicon-remove"></i></a></td>
+								<td ng-if="produto.id != null"><a ng-click="ctrl.rmvProdutoDb(produto)"><i class="glyphicon glyphicon-minus"></i></a></td>
+								<td >{{ produto.produto.codProduto }}</td>
+								<td>{{ produto.produto.descricao }}</td>
 <!-- 								<td>{{ produto.pontuacao }}</td> -->
-								<td><input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero></td>
-								<td><input ng-model="produto.valorVendido" value="0.0" class="form-control" ng-dinheiro></td>
+<!-- 								<input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero> -->
+								<td><input type="number" step="0.01" 
+				       					   ng-model="produto.qntdProdutos" 
+				       					   ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>
+								<td><input ng-model="produto.valorVendido" value="0.0" class="form-control"></td>
 							</tr>	
 						</tbody>
 					</table>

@@ -3,15 +3,14 @@
 <div class="modal fade" id="myModalCliente" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabelCliente"
 	aria-hidden="true">
-	<div class="modal-dialog"
-	ng-controller="clienteController as ctrl">
+	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header" style="background-color:#f49b17;">
+			<div class="modal-header" style="background-color:#E7E3E2;">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
 				<h4 class="modal-title" id="myModalLabelCliente">
-					 <span class="coltitleModal" style="color:white"><i class="glyphicon glyphicon-plus"></i> Consultar Cliente</span> 
+					 <span class="coltitleModal" style="color:black;"><i class="glyphicon glyphicon-plus"></i> Consultar Cliente</span> 
 				</h4>
 			</div>
 			<div class="modal-body">

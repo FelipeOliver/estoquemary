@@ -1,13 +1,18 @@
 package br.com.estoquemary.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Telefone {
 
 	@Id
 	private int numero;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Cliente cliente;
 	
 	private String whatsapp;
 	private String operadora;

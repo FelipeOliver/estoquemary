@@ -33,6 +33,16 @@ public class EstoqueProdutosService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void retiraProdutosEstoque(List<ProdutosVenda> produtos){
+		try{
+			for(int i = 0; i < produtos.size(); i++){
+				this.atualizaEstoque(produtos.get(i).getProduto());
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	public List<EstoqueProdutos> findAll() {
 		return (List<EstoqueProdutos>) estoqueProdutoRepository.findAll();
@@ -76,7 +86,7 @@ public class EstoqueProdutosService {
 		double valorVendido = 0;
 		for(int j = 0; j < produtosVenda.size(); j++){
 			quantidadeVendida = quantidadeVendida + produtosVenda.get(j).getQntdProdutos();
-			valorVendido = valorVendido + produtosVenda.get(j).getValorVendido();
+			valorVendido = valorVendido + (produtosVenda.get(j).getValorVendido()*produtosVenda.get(j).getQntdProdutos());
 		}
 		int a;
 		estoque.setQntdEstoque(quantidadeComprada - quantidadeVendida);

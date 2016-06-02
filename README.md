@@ -25,14 +25,14 @@ Screens to do:
   * -Update-
   * -Search-
 
-- Venda
-  * Create
+- Cliente
+  * -Create-
   * Delete
   * Update
-  * Search
-  
-- Cliente
-  * Create
+  * -Search-
+
+- Venda
+  * -Create-
   * Delete
   * Update
   * Search

@@ -3,6 +3,7 @@ package br.com.estoquemary.models;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,12 +19,10 @@ public class Cliente {
 	private String nome;
 	private String dataAniversario;
 	
-	@JsonIgnore
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER) @JsonIgnore
 	private List<Endereco> enderecos;
 	
-	@JsonIgnore
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER) @JsonIgnore
 	private List<Telefone> telefones;
 
 	private String email;

@@ -8,7 +8,6 @@
 	</head>
 	
 	<body ng-app="EstoqueMaryApp">
-		<c:import url="cliente/modal-cliente.jsp"></c:import>
 		<div class="row" style="margin-bottom:80px;">
 			<c:import url="core/menu.jsp"></c:import>
 		</div>
@@ -32,6 +31,7 @@
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/pedido-viewController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/estoqueController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/vendaController.js"></script>
+	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/vendaViewController.js"></script>
 	<script type="text/javascript" src="/estoquemary/resources/core/js/controllers/clienteController.js"></script>
 	
 	<script type="text/javascript" src="/estoquemary/resources/core/js/directives/dinheiroMask.js"></script>

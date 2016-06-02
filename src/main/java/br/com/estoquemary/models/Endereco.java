@@ -1,8 +1,10 @@
 package br.com.estoquemary.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Endereco {
@@ -10,6 +12,10 @@ public class Endereco {
 	@Id @GeneratedValue
 	private Long idEndereco;
 	private String endereco;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Cliente cliente;
+	
 	private String numero;
 	private String complemento;
 	private String cidade;

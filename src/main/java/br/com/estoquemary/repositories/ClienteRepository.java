@@ -10,6 +10,6 @@ import br.com.estoquemary.models.Cliente;
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
 
-	List<Cliente> findByNome(String nome);
+	List<Cliente> findByNomeContainingIgnoreCase(String nome);
 
 }
