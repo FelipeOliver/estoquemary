@@ -22,4 +22,8 @@ public class ClienteService {
 		return clienteRepository.findByNomeContainingIgnoreCase(nome);
 	}
 
+	public List<Cliente> findAll() {
+		return (List<Cliente>) this.clienteRepository.findAll();
+	}
+
 }

@@ -42,12 +42,6 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>4.2.2.RELEASE</version>
-			<scope>test</scope>
-		</dependency>
 		<!-- Retorno de Action como Json -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

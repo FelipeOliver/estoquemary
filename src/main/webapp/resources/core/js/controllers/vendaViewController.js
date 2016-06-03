@@ -4,7 +4,7 @@ app.controller('vendaViewController',['$scope', '$http', function($scope, $http)
 	
 	self.venda;
 	
-	self.rmvPedido = function(venda){
+	self.rmvVenda = function(venda){
 		var a = confirm("Você realmente deseja excluir a venda: "+ venda.idVenda + "?");
 		if(a){
 			$http.post('/estoquemary/venda/delete/', venda)

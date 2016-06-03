@@ -84,4 +84,22 @@ public class VendaController {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<String> deleteVenda(@RequestBody Venda venda){
+		try{
+			List<ProdutosVenda> produtos = this.produtosVendaService.findByVenda(venda);
+			for(int i = 0; i < produtos.size(); i++){
+				this.produtosVendaService.rmvProduto(produtos.get(i));
+				this.estoqueProdutosService.atualizaEstoque(produtos.get(i).getProduto());
+			}
+			this.vendaService.deleteVenda(venda);
+			return new ResponseEntity<String>("Venda: "+ venda.getIdVenda() + " Deletada com Sucesso", HttpStatus.CREATED);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }

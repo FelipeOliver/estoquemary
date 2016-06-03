@@ -23,4 +23,8 @@ public class ProdutosVendaService {
 		return (List<ProdutosVenda>) this.produtosVendaRepository.save((Iterable<ProdutosVenda>)list);
 	}
 
+	public void rmvProduto(ProdutosVenda produtosVenda) {
+		this.produtosVendaRepository.delete(produtosVenda);
+	}
+
 }

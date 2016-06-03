@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import br.com.estoquemary.models.Cliente;
 import br.com.estoquemary.services.ClienteService;
 
@@ -26,7 +28,9 @@ public class ClienteController {
 	@RequestMapping("/")
 	public ModelAndView getHome(){
 		ModelAndView mv = new ModelAndView("index");
+		List<Cliente> clientes = this.clienteService.findAll();
 		mv.addObject("pagina", "cliente/cliente-add.jsp");
+		mv.addObject("clientes", new Gson().toJson(clientes));
 		mv.addObject("escolhido", "Cliente");
 		return mv;
 	}

@@ -25,6 +25,10 @@ public class VendaService {
 	public Venda findOne(String idVenda) {
 		return this.vendaRepository.findOne(Long.parseLong(idVenda));
 	}
+
+	public void deleteVenda(Venda venda) {
+		this.vendaRepository.delete(venda);
+	}
 	
 	
 }

@@ -22,7 +22,7 @@ Screens to do:
 - Pedido
   * -Create-
   * -Delete-
-  * -Update-
+  * Update
   * -Search-
 
 - Cliente
@@ -35,4 +35,4 @@ Screens to do:
   * -Create-
   * Delete
   * Update
-  * Search
+  * -Search-

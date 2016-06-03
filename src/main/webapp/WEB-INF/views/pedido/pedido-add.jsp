@@ -129,7 +129,6 @@
 				       					   ng-model="produto.qntdProdutos" 
 				       					   ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>
 								<td><input ng-model="produto.valorPago" value="0.0" class="form-control"></td>
-								
 							</tr>	
 						</tbody>
 					</table>

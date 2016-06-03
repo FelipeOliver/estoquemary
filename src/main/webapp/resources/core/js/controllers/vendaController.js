@@ -70,6 +70,17 @@ app.controller('vendaController',['$scope', '$http', function($scope, $http){
 		}
 	};
 	
+	self.rmvProdutoDb = function(produto) {
+		var c = confirm("Você deseja excluir o produto: " + produto.produto.descricao + " ?");
+		if(c){
+			$http.post("/estoquemary/produtosVenda/rmvProduto", produto)
+			.success(function(data){
+				self.rmvProduto(produto);
+				alert("Produto deletado do Pedido com Sucesso");
+			});
+		}
+	}
+
 	self.addVenda = function(){
 		console.log(self.venda);
 		$http.post("/estoquemary/venda/addVenda", self.venda)

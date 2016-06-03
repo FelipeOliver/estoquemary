@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 
 <div class="container" ng-controller="clienteController as ctrl">
+	<span ng-init="ctrl.clientes = ${clientes}"></span>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h2 style="text-align:center;">Adicionar um novo <span style="color:#CCA498;">Cliente</span></h2>		
@@ -50,6 +51,29 @@
 					<button style="margin-top: 10px; margin-left: 15px;" type="submit" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Salvar</button>
 				</div>
 			</form>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<input ng-model="ctrl.campoPesquisa" class="form-control">
+			<table class="table table-striped table-default">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Aniversário</th>
+						<th>Cor da Base</th>
+						<th>Anfitriã</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="cliente in ctrl.clientes | filter: ctrl.campoPesquisa">
+						<td>{{ cliente.nome }}</td>
+						<td>{{ cliente.dataAniversario }}</td>
+						<td>{{ cliente.corBase }}</td>
+						<td>{{ cliente.anfitria }}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
