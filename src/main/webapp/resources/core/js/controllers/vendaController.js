@@ -75,6 +75,7 @@ app.controller('vendaController',['$scope', '$http', function($scope, $http){
 		$http.post("/estoquemary/venda/addVenda", self.venda)
 		.success(function(data){
 			alert(data);
+			window.location.href = window.location.href.replace('/newVenda', '') + "/listVenda/" + data; 
 		});
 	};
 
@@ -86,7 +87,8 @@ app.controller('vendaController',['$scope', '$http', function($scope, $http){
 		console.log(self.produtosAdicionados);
 		$http.post("/estoquemary/produtosVenda/addList", self.produtosAdicionados)
 		.success(function(data){
-			alert(data);
+			alert("Lista salva com sucesso");
+			location.reload()
 		});		
 	}
 	

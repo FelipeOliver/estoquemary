@@ -43,6 +43,7 @@
 			<div class="col-xs-2">
 				<label class="label label-default">Status </label>
 				<input class="form-control input-sm" type="text" ng-model="ctrl.venda.status" ng-disabled="ctrl.salvo">
+			</div>
 		</div>
 		<div class="row">
 			<button type="submit" ng-disabled="formAddVenda.$invalid||ctrl.salvo" class="btn btn-success btn-md" style="margin-top: 10px; margin-left: 15px;">Salvar</button>
@@ -100,7 +101,7 @@
 							<h3>Produtos Adicionados</h3>
 						</div>
 						<div class="col-xs-4" style="margin-top:20px">
-							<a class="btn btn-default btn-md" ng-click="ctrl.addList()" ng-disabled="self.produtosAdicionados.lenght > 0"><i class="glyphicon glyphicon-ok"></i> Confirmar</a>
+							<button type="button" ng-disabled="(ctrl.produtosAdicionados.lenght > 0)||!ctrl.salvo" class="btn btn-default btn-sm" ng-click="ctrl.addList()"><i class="glyphicon glyphicon-ok"></i> Confirmar</button>
 						</div>
 					</div>
 				</div>
@@ -111,7 +112,6 @@
 								<th><i class="glyphicon glyphicon-tasks"></i></th>
 								<th>Código Produto</th>
 								<th>Descrição do Produto</th>
-<!-- 								<th>Pontuação</th> -->
 								<th>Quantidade</th>
 								<th>Vlr Venda</th>
 							</tr>
@@ -122,8 +122,6 @@
 								<td ng-if="produto.id != null"><a ng-click="ctrl.rmvProdutoDb(produto)"><i class="glyphicon glyphicon-minus"></i></a></td>
 								<td >{{ produto.produto.codProduto }}</td>
 								<td>{{ produto.produto.descricao }}</td>
-<!-- 								<td>{{ produto.pontuacao }}</td> -->
-<!-- 								<input ng-model="produto.qntdProdutos" value="0" class="form-control" ng-numero> -->
 								<td><input type="number" step="0.01" 
 				       					   ng-model="produto.qntdProdutos" 
 				       					   ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required></td>

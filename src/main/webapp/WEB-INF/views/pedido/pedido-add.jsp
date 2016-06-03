@@ -99,7 +99,7 @@
 							<h3>Produtos Adicionados</h3>
 						</div>
 						<div class="col-xs-4" style="margin-top:20px">
-							<a class="btn btn-default btn-md" ng-click="ctrl.addList()" ng-disabled="self.produtosAdicionados.lenght > 0"><i class="glyphicon glyphicon-ok"></i> Confirmar</a>
+							<a class="btn btn-default btn-md" ng-click="ctrl.addList()" ng-disabled="(ctrl.produtosAdicionados.lenght > 0)||!ctrl.salvo"><i class="glyphicon glyphicon-ok"></i> Confirmar</a>
 						</div>
 					</div>
 				</div>

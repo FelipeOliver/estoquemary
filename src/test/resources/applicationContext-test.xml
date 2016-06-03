@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven /> 
+
+	<!-- Mapeia uma pasta para colocar o JS, CSS e IMG, a mesma fica na pasta src -> main -> webapp  -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Faz o redirecionamento dos mapeamentos do Spring para jsp -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- Declara componentes que serão verificados pelo Spring-->
+	<context:component-scan base-package="br.com.estoquemary.repositories" />
+	
+	<beans:bean class="java.lang.String" id="dbHost">
+		<beans:constructor-arg
+			value="#{systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'localhost' : systemEnvironment['OPENSHIFT_MYSQL_DB_HOST']}" />
+	</beans:bean>
+	<beans:bean class="java.lang.String" id="dbPort">
+		<beans:constructor-arg value="#{systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? '3306' : systemEnvironment['OPENSHIFT_MYSQL_DB_PORT']}">
+		</beans:constructor-arg>
+	</beans:bean>
+	<beans:bean class="java.lang.String" id="dbUser">
+		<beans:constructor-arg
+			value="#{systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'root' : 'adminyhWZCvV' }" />
+	</beans:bean>
+	<beans:bean class="java.lang.String" id="dbPass">
+		<beans:constructor-arg value="#{ systemEnvironment['OPENSHIFT_MYSQL_DB_HOST'] == null ? 'root' : 'wTFEwhfu3GA6' }" />
+	</beans:bean>
+
+	<!-- ********** Configuration Datasource Connection *********************************** -->
+	<beans:bean id="dsProducao" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://#{@dbHost}:#{@dbPort}/estoquemary?autoReconnect=true" />
+		<beans:property name="username" value="#{@dbUser}" />
+		<beans:property name="password" value="#{@dbPass}" />
+	</beans:bean>
+	
+ 	<!-- Configuração das informações de conexão com o BD, do EntytiManager e do dataSource--> 
+<!-- 	<beans:bean id="dsProducao" class="org.springframework.jdbc.datasource.DriverManagerDataSource">         -->
+<!--         <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!--         <beans:property name="url" value="jdbc:mysql://localhost:3306/ambvisual?autoReconnect=true" />Trocar o database_name pelo nome do banco -->
+<!--         <beans:property name="username" value="root" /> Trocar para o Usuário utilizado no BD -->
+<!--         <beans:property name="password" value="root" /> Trocar para a Senha utilizada no BD -->
+<!--     </beans:bean> -->
+
+    <beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <beans:property name="dataSource" ref="dsProducao" /> <!--  Fica o mesmo nome do utilizado na configuração do DataSource-->
+        <beans:property name="jpaVendorAdapter">
+        <beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </beans:property>
+    </beans:bean>
+
+    <tx:annotation-driven/>
+
+    <beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <beans:property name="entityManagerFactory" ref="entityManagerFactory" />
+    </beans:bean> 
+    
+     <!-- ********** Configuration Spring Data ************************************************** -->
+    <beans:bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+    <jpa:repositories base-package="br.com.estoquemary.repositories"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager"/>  
+	
+	
+</beans:beans>

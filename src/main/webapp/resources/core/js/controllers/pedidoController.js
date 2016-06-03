@@ -79,8 +79,8 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 	self.addPedido = function(){
 		$http.post("/estoquemary/pedido/addPedido", self.pedido)
 		.success(function(data){
-			self.salvo = true;
 			alert("Pedido Salvo");
+			window.location.href = window.location.href.replace('/newPedido', '') + "/listPedido/" + self.pedido.codPedido;
 		});
 	};
 	
@@ -93,6 +93,7 @@ app.controller('pedidoController',['$scope', '$http', function($scope, $http){
 		$http.post("/estoquemary/pedidoProdutos/addList", self.produtosAdicionados)
 		.success(function(data){
 			alert(data);
+			window.reload();
 		});		
 	}
 }]);
