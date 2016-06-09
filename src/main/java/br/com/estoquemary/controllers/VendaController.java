@@ -35,7 +35,7 @@ public class VendaController {
 	@RequestMapping("/newVenda")
 	public ModelAndView newVenda(){
 		ModelAndView mv = new ModelAndView("index");
-		List<Produto> lp = estoqueProdutosService.findByQntdEstoque();
+		List<Produto> lp = estoqueProdutosService.findByQntdEstoqueReturnProduto();
 		System.out.println(lp.toString());
 		mv.addObject("produtosDisponiveis", new Gson().toJson(lp));
 		mv.addObject("pagina", "venda/venda-add.jsp");
@@ -58,7 +58,7 @@ public class VendaController {
 	public ModelAndView listVenda(@PathVariable String idVenda){
 		ModelAndView mv = new ModelAndView("index");
 		try{
-			List<Produto> list = estoqueProdutosService.findByQntdEstoque();
+			List<Produto> list = estoqueProdutosService.findByQntdEstoqueReturnProduto();
 			Venda venda = this.vendaService.findOne(idVenda);
 			List<ProdutosVenda> listAdicionados = this.produtosVendaService.findByVenda(venda);
 			mv.addObject("produtosDisponiveis", new Gson().toJson(list));

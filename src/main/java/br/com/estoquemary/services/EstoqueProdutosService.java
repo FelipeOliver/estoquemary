@@ -48,13 +48,23 @@ public class EstoqueProdutosService {
 		return (List<EstoqueProdutos>) estoqueProdutoRepository.findAll();
 	}
 	
-	public List<Produto> findByQntdEstoque(){
+	public List<Produto> findByQntdEstoqueReturnProduto(){
 		List<EstoqueProdutos> list = estoqueProdutoRepository.findByQntdEstoqueIsGreaterThan(0);
 		List<Produto> lp = new ArrayList<Produto>();
 		for(int i = 0; i < list.size();i++){
 			lp.add(list.get(i).getProduto());
 		}
 		return lp;
+	}
+	
+	public List<EstoqueProdutos> findByQntdEstoqueReturnEstoque(){
+		List<EstoqueProdutos> list = estoqueProdutoRepository.findByQntdEstoqueIsGreaterThan(0);
+		return list;
+	}
+	
+	public List<EstoqueProdutos> findByQntdEstoqueAndQntdCompradaReturnEstoque(){
+		List<EstoqueProdutos> list = estoqueProdutoRepository.findByQntdEstoqueIsLessThanEqualAndQntdCompradaIsGreaterThan(0, 0);
+		return list;
 	}
 
 	public void removeEstoqueByCodProduto(Produto produto) {
@@ -101,5 +111,9 @@ public class EstoqueProdutosService {
 		estoque.setValorMedio(valorComprado / a);
 		
 		estoqueProdutoRepository.save(estoque);
+	}
+
+	public List<EstoqueProdutos> findByQntdEstoqueNaoComprado() {
+		return this.estoqueProdutoRepository.findByQntdEstoqueEquals(0);
 	}
 }
